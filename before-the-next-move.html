@@ -91,7 +91,20 @@ h3{font-size:1.1875rem; font-weight:600; letter-spacing:0}
 /* ============================ OUVERTURE ============================ */
 .hero{position:relative; overflow:hidden}
 .hero .dedans{display:grid; gap:clamp(2.5rem,5vw,4.5rem)}
+.hero__haut{display:grid; gap:clamp(2rem,4vw,3.5rem); align-items:center}
+@media(min-width:960px){.hero__haut{grid-template-columns:1.15fr .85fr}}
 .hero__mot{max-width:36rem}
+/* LE PORTRAIT, REPRIS DE SA PAGE D'ACCUEIL: meme halo, meme ombre portee. Une page qui
+   vend un jugement HUMAIN montre l'humain; sans lui, la moitie droite de l'ouverture
+   etait un aplat de marine. */
+.portrait{position:relative; display:flex; justify-content:center; align-items:flex-end}
+.portrait::before{content:""; position:absolute; bottom:4%; left:50%;
+  transform:translateX(-50%); width:116%; height:92%; border-radius:50%;
+  background:radial-gradient(circle, rgba(201,168,76,.26) 0%, rgba(201,168,76,.10) 42%,
+  transparent 68%); z-index:0; pointer-events:none}
+.portrait img{position:relative; z-index:1; width:100%; max-width:380px; height:auto;
+  display:block; filter:drop-shadow(0 24px 48px rgba(0,0,0,.42))}
+@media(max-width:959px){.portrait img{max-width:280px}}
 .hero h1 .rupture{display:block; color:var(--gold)}
 /* LE TRACE. Une ligne plate qui se casse: c'est le sujet de la page, il merite
    la moitie de l'ouverture et pas une frise decorative de 90 px. */
@@ -202,6 +215,7 @@ blockquote{font-size:clamp(1.5rem,3vw,2.125rem); font-style:italic; font-weight:
 <!-- ============================ OUVERTURE ============================ -->
 <section class="bande bande--navy hero">
   <div class="dedans">
+    <div class="hero__haut">
     <div class="hero__mot">
       <span class="etiq">Signal Shift</span>
       <h1>Before the<span class="rupture">Next Move.</span></h1>
@@ -212,6 +226,10 @@ blockquote{font-size:clamp(1.5rem,3vw,2.125rem); font-style:italic; font-weight:
         <a class="cta cta--plein" href="https://calendly.com/tscally/call">Get a Decision Read →</a>
         <a class="cta cta--nu" href="#exhibit">See a real finding ↓</a>
       </div>
+    </div>
+    <div class="portrait">
+      <img src="tom.png" alt="Tom Scally, creator of Signal Shift" width="620" height="774">
+    </div>
     </div>
     <div class="trace">
       <svg viewBox="0 0 1200 260" fill="none" aria-hidden="true" preserveAspectRatio="none">
