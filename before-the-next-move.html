@@ -124,11 +124,25 @@ h3{font-size:1.1875rem; font-weight:600; letter-spacing:0}
 .liste li{position:relative; padding:.7rem 0 .7rem 1.6rem; border-top:1px solid var(--bord);
   font-size:var(--t-body); color:var(--ink-2)}
 .liste li::before{content:"—"; position:absolute; left:0; color:var(--gold)}
-.verdict{display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1.75rem}
-.verdict span{font-size:var(--t-label); font-weight:700; letter-spacing:.14em;
-  text-transform:uppercase; padding:.55rem 1rem; border:1px solid var(--bord);
-  border-radius:2px; background:#fff; color:var(--ink)}
-.verdict span:first-child{border-color:var(--gold); background:var(--gold); color:var(--navy)}
+/* LES TROIS VERDICTS NE SONT PAS DES BOUTONS.
+   Premiere version: trois pastilles arrondies, la premiere pleine en or. Elles avaient
+   exactement la forme de l'appel a l'action juste au-dessus, et elles ne cliquent pas.
+   Un element qui a la forme d'une commande et n'en est pas une ment au lecteur. Ici c'est
+   du VOCABULAIRE: les trois issues possibles d'un Snapshot. Donc ni fond, ni coin
+   arrondi, ni contour: une legende, lue comme une legende. */
+.verdict{margin-top:1.75rem}
+.verdict .quoi{display:block; font-size:var(--t-note); color:var(--ink-3);
+  margin-bottom:.7rem}
+.verdict ul{display:flex; flex-wrap:wrap; gap:0; list-style:none; margin:0; padding:0;
+  border-top:1px solid var(--bord)}
+.verdict li{flex:1 1 7rem; padding:.85rem 0 0; border-top:2px solid transparent;
+  margin-top:-1px; font-family:"Playfair Display",serif; font-size:1.0625rem;
+  font-weight:600; color:var(--ink)}
+.verdict li:nth-child(1){border-top-color:var(--gold)}
+.verdict li:nth-child(2){border-top-color:#b9b4a4}
+.verdict li:nth-child(3){border-top-color:#cfcabb}
+.verdict li span{display:block; font-family:"DM Sans",sans-serif; font-size:var(--t-note);
+  font-weight:400; color:var(--ink-3); margin-top:.2rem}
 .trace__leg span:last-child{color:var(--gold)}
 
 /* ============================ LE CAS ============================ */
@@ -246,7 +260,14 @@ blockquote{font-size:clamp(1.5rem,3vw,2.125rem); font-style:italic; font-weight:
           <li>Whether the differentiation claim is already taken</li>
           <li>What's economically exposed if a key assumption is wrong</li>
         </ul>
-        <div class="verdict"><span>Proceed</span><span>Adjust</span><span>Reconsider</span></div>
+        <div class="verdict">
+          <span class="quoi">A Snapshot ends in one of three verdicts:</span>
+          <ul>
+            <li>Proceed<span>as planned</span></li>
+            <li>Adjust<span>then move</span></li>
+            <li>Reconsider<span>the move itself</span></li>
+          </ul>
+        </div>
       </div>
       <div class="volet">
         <span class="etiq">After</span>
