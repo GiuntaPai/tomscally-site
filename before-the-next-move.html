@@ -226,9 +226,37 @@ blockquote{font-size:clamp(1.5rem,3vw,2.125rem); font-style:italic; font-weight:
 .barre__liens a:hover{color:#fff; border-bottom-color:var(--gold)}
 .barre__liens a[aria-current="page"]{color:var(--gold); border-bottom-color:var(--gold)}
 </style>
+
+<style>
+/* --- LES TROIS VOIES DE DECISION (PDF de Tom, 25/08). Elles remplacent quatre puces:
+   une decision se range dans une voie, et les trois se lisent d'un coup d'oeil. Meme
+   etiquette que les sections, meme filet, aucune couleur de plus. */
+.voies{margin:1.75rem 0 2rem}
+.voies__titre{display:block; font-size:var(--t-label); font-weight:700; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--or-encre); margin:0 0 1rem}
+/* TROIS COLONNES, PAS DEUX PUIS UNE: la section est deja coupee en deux volets, donc la
+   place utile fait la moitie de la page. A 11rem la troisieme voie tombait a la ligne. */
+.voies__grille{display:grid; grid-template-columns:repeat(3,1fr);
+  gap:1.1rem; border-top:1px solid var(--bord); padding-top:1.25rem}
+@media (max-width:640px){.voies__grille{grid-template-columns:1fr}}
+.voies__grille h4{margin:0 0 .45rem; font-family:"DM Sans",sans-serif; font-size:.8125rem;
+  font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--ink)}
+.voies__grille p{margin:0; font-size:var(--t-note); color:var(--ink-3); line-height:1.55}
+/* Les verdicts sans leur phrase d'introduction: trois mots, rien autour. */
+.verdict--nu .quoi{display:none}
+.verdict--nu ul li span{display:none}
+</style>
+
+<style>
+.barre__liens .barre__btn{background:var(--gold); color:var(--navy); border-radius:2px;
+  padding:.55rem 1rem; border-bottom:0; letter-spacing:.1em}
+.barre__liens .barre__btn:hover{background:var(--gold-soft); color:var(--navy);
+  border-bottom:0}
+.barre__liens .barre__btn[aria-current="page"]{color:var(--navy)}
+</style>
 </head>
 <body>
-<nav class="barre"><a class="barre__nom" href="/before-the-next-move.html">Tom Scally <span>Signal Shift</span></a><div class="barre__liens"><a href="/about-tom.html">About Tom</a><a href="/get-a-decision-read.html">Get a Decision Read</a></div></nav>
+<nav class="barre"><a class="barre__nom" href="/before-the-next-move.html">Tom Scally <span>Signal Shift</span></a><div class="barre__liens"><a href="/about-tom.html">About Tom</a><a class="barre__btn" href="/get-a-decision-read.html">Get a Decision Read</a></div></nav>
 
 <!-- ============================ OUVERTURE ============================ -->
 <section class="bande bande--navy hero">
@@ -296,28 +324,29 @@ blockquote{font-size:clamp(1.5rem,3vw,2.125rem); font-style:italic; font-weight:
         <h3>Should we make this move?</h3>
         <p>Not a prediction. A structured, evidence-based read on how well the decision is
           currently supported.</p>
-        <div class="portee">
-          <p>This applies wherever leadership is about to commit real time, money, or
-            credibility to a decision the market will ultimately judge:</p>
-          <ul>
-            <li>A brand or communications push</li>
-            <li>A product or feature launch</li>
-            <li>A fundraise or investor narrative</li>
-            <li>A major partnership announcement</li>
-          </ul>
+        <div class="voies">
+          <span class="voies__titre">Three decision lanes</span>
+          <div class="voies__grille">
+            <div><h4>Market &amp; Launch</h4>
+              <p>Brand / communications push<br>Product or feature launch</p></div>
+            <div><h4>Capital &amp; Investor</h4>
+              <p>Fundraise or investor narrative</p></div>
+            <div><h4>Partnerships &amp; Growth</h4>
+              <p>Major partnership or commercial initiative</p></div>
+          </div>
         </div>
+        <span class="voies__titre">What the Decision Read tests</span>
         <ul class="liste">
           <li>Competitive positioning &amp; timing</li>
           <li>Market conditions &amp; audience priorities</li>
           <li>Whether the differentiation claim is already taken</li>
           <li>What's economically exposed if a key assumption is wrong</li>
         </ul>
-        <div class="verdict">
-          <span class="quoi">A Snapshot ends in one of three verdicts:</span>
+        <div class="verdict verdict--nu">
           <ul>
-            <li>Proceed<span>as planned</span></li>
-            <li>Adjust<span>then move</span></li>
-            <li>Reconsider<span>the move itself</span></li>
+            <li>Proceed</li>
+            <li>Adjust</li>
+            <li>Reconsider</li>
           </ul>
         </div>
       </div>
@@ -345,26 +374,15 @@ blockquote{font-size:clamp(1.5rem,3vw,2.125rem); font-style:italic; font-weight:
   <div class="dedans">
     <span class="etiq">Exhibit A — Bitcoin Ocean</span>
     <h2>Winning visibility.<br>Racing to lock authority.</h2>
-    <p class="lead prose" style="margin-top:1.75rem"><strong>The catch:</strong> fourteen
-      days after a major announcement, Signal Shift flagged that a direct competitor was
-      about to raise the industry's compliance bar — and specified exactly what needed to
-      happen before that competitor's move hardened into the new default comparison.</p>
+    <p class="lead prose" style="margin-top:1.75rem"><strong>The decision error:</strong> a
+      company appeared to be winning — dominant reach, a dominant news cycle. Fourteen days
+      later, a direct competitor was about to change the market's standard of proof entirely.
+      Signal Shift identified that gap before it hardened into the new default comparison.</p>
 
     <div class="stats">
-      <div class="stat"><b>65M+</b><span>Potential impressions — 6× the nearest competitor in the same window</span></div>
-      <div class="stat"><b>63.8%</b><span>Share of voice across 36 placements</span></div>
-      <div class="stat"><b>86%</b><span>Of that volume was automated syndication, not earned editorial</span></div>
-    </div>
-
-    <div class="prose">
-      <p>On its own numbers, the announcement itself looked like a clear win. Bitcoin
-        Ocean's Nov 11 SOC 2 announcement dominated the news cycle that followed.</p>
-      <p>A media-monitoring dashboard would have stopped there. What it wouldn't have shown:
-        a direct competitor was about to announce a <strong>higher compliance standard</strong>
-        — and despite entering later and with far less reach, would earn the kind of
-        crypto-native validation (exchange visibility, community endorsement,
-        technical-outlet coverage) that Bitcoin Ocean's syndication-led campaign hadn't yet
-        secured.</p>
+      <div class="stat"><b>65M+</b><span>Potential impressions — 6x the nearest competitor</span></div>
+      <div class="stat"><b>86%</b><span>Of that reach was syndication, not earned authority</span></div>
+      <div class="stat"><b>14 days</b><span>Before a competitor raised the bar the market would judge by</span></div>
     </div>
 
     <div class="trouve prose">
@@ -373,6 +391,9 @@ blockquote{font-size:clamp(1.5rem,3vw,2.125rem); font-style:italic; font-weight:
         exactly what would need to happen next to win the trust race too — before the window
         closed.</p>
     </div>
+    <p class="note prose" style="margin-top:1.5rem; font-style:italic">This exhibit reflects
+      Signal Shift's independent post-announcement read. It does not include a pre-decision
+      engagement.</p>
     <div class="contre">
       <p><strong>A separate launch we reviewed</strong> generated 376 paid postings and an
         estimated 821M in potential reach — and zero independent editorial coverage. It
@@ -441,9 +462,10 @@ blockquote{font-size:clamp(1.5rem,3vw,2.125rem); font-style:italic; font-weight:
 <section class="bande bande--navy final">
   <div class="dedans">
     <h2>Before your next move</h2>
-    <p class="lead prose">You may not need more activity, and you may not need another
-      strategy. You may need to know what's closing in on the move you're about to make —
-      before the market decides for you.</p>
+    <p class="lead prose">Competitive windows close on their own schedule, not yours. You
+      may not need more activity, and you may not need another strategy. You may need to know
+      whether the evidence supports the move you're about to make — before the market decides
+      for you.</p>
     <div class="boutons">
       <a class="cta cta--plein" href="/get-a-decision-read.html">Get a Decision Read →</a>
     </div>

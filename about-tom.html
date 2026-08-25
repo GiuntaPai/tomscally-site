@@ -226,19 +226,54 @@ blockquote{font-size:clamp(1.5rem,3vw,2.125rem); font-style:italic; font-weight:
 .barre__liens a[aria-current="page"]{color:var(--gold); border-bottom-color:var(--gold)}
 </style>
 
+
+<style>
+/* --- LE HAUT DE SA PAGE: ses mots a gauche, sa photo a droite, comme sur la page de vente
+   pour que les deux ecrans se reconnaissent. Sous 960 px la photo passe dessous. */
+.at-haut{display:grid; grid-template-columns:1fr minmax(240px,380px); gap:clamp(2rem,5vw,4rem);
+  align-items:end}
+@media(max-width:959px){.at-haut{grid-template-columns:1fr}
+  .at-haut .portrait{order:-1; justify-content:flex-start}}
+.portrait{position:relative; display:flex; justify-content:center; align-items:flex-end}
+.portrait::before{content:""; position:absolute; bottom:4%; left:50%;
+  transform:translateX(-50%); width:min(100%,340px); aspect-ratio:1; border-radius:50%;
+  background:radial-gradient(circle,rgba(201,168,76,.20) 0%,rgba(201,168,76,0) 68%)}
+.portrait img{position:relative; z-index:1; width:100%; max-width:380px; height:auto;
+  display:block}
+@media(max-width:959px){.portrait img{max-width:260px}}
+</style>
+
+<style>
+.barre__liens .barre__btn{background:var(--gold); color:var(--navy); border-radius:2px;
+  padding:.55rem 1rem; border-bottom:0; letter-spacing:.1em}
+.barre__liens .barre__btn:hover{background:var(--gold-soft); color:var(--navy);
+  border-bottom:0}
+.barre__liens .barre__btn[aria-current="page"]{color:var(--navy)}
+</style>
 </head>
 <body>
-<nav class="barre"><a class="barre__nom" href="/before-the-next-move.html">Tom Scally <span>Signal Shift</span></a><div class="barre__liens"><a href="/about-tom.html" aria-current="page">About Tom</a><a href="/get-a-decision-read.html">Get a Decision Read</a></div></nav>
+<nav class="barre"><a class="barre__nom" href="/before-the-next-move.html">Tom Scally <span>Signal Shift</span></a><div class="barre__liens"><a href="/about-tom.html" aria-current="page">About Tom</a><a class="barre__btn" href="/get-a-decision-read.html">Get a Decision Read</a></div></nav>
 
 <section class="bande bande--navy">
-  <div class="dedans prose">
-    <span class="etiq">About Tom Scally</span>
-    <h1 style="font-size:clamp(2.25rem,5.4vw,3.5rem)">Seeing what others may be too close to see.</h1>
-  </div>
+  <div class="dedans at-haut">
+    <div class="prose">
+      <span class="etiq">About Tom Scally</span>
+      <h1 style="font-size:clamp(2.25rem,5.4vw,3.5rem)">Seeing what others may be too close
+        to see.</h1>
+      <p class="lead" style="margin-top:1.75rem">Founder of Signal Shift. Executive coaching,
+        business development, strategic partnerships, market positioning.</p>
+      <div class="boutons">
+        <a class="cta cta--plein" href="/get-a-decision-read.html">Get a Decision Read →</a>
+      </div>
+    </div>
+    <div class="portrait">
+      <img src="tom.png" alt="Tom Scally, founder of Signal Shift" width="620" height="774">
+    </div>
+  </div></div>
 </section>
 
 <section class="bande bande--creme">
-  <div class="dedans prose">
+  <div class="dedans"><div class="prose">
     <p class="lead">My career has taken me through executive coaching, business development,
       strategic partnerships, market positioning, communications, and growth.</p>
     <p>On the surface, those may look like different disciplines. But the work has
@@ -266,11 +301,11 @@ blockquote{font-size:clamp(1.5rem,3vw,2.125rem); font-style:italic; font-weight:
       sight because everyone is focused on executing the existing plan.</p>
     <p>And sometimes the most valuable decision isn't what to do next.</p>
     <p><strong>It's recognizing what not to do.</strong></p>
-  </div>
+  </div></div>
 </section>
 
 <section class="bande bande--sable">
-  <div class="dedans prose">
+  <div class="dedans"><div class="prose">
     <span class="etiq">Why I Built Signal Shift</span>
     <h2>Another source of evidence in the room.</h2>
     <p style="margin-top:1.75rem">Signal Shift grew out of that experience.</p>
@@ -290,11 +325,11 @@ blockquote{font-size:clamp(1.5rem,3vw,2.125rem); font-style:italic; font-weight:
     <p>And sometimes it reveals a reason to reconsider the move altogether.</p>
     <p>That's why every Decision Read ultimately points toward one of three conclusions:</p>
     <p><strong>Proceed. Adjust. Reconsider.</strong></p>
-  </div>
+  </div></div>
 </section>
 
 <section class="bande bande--navy">
-  <div class="dedans prose">
+  <div class="dedans"><div class="prose">
     <span class="etiq">The Human Decision Layer</span>
     <h2>Outside evidence. Commercial judgment. Better decisions.</h2>
     <p style="margin-top:1.75rem">Technology can gather and analyze more information than
@@ -311,7 +346,7 @@ blockquote{font-size:clamp(1.5rem,3vw,2.125rem); font-style:italic; font-weight:
     <div class="boutons">
       <a class="cta cta--plein" href="/get-a-decision-read.html">Get a Decision Read →</a>
     </div>
-  </div>
+  </div></div>
 </section>
 
 </body>
