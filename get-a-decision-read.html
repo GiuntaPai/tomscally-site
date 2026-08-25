@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Signal Shift — Before the Next Move | Tom Scally</title>
-<meta name="description" content="Independent, evidence-based review for decisions with real capital, credibility or momentum riding on them — before you commit, and again after.">
+<title>Get a Decision Read | Signal Shift</title>
+<meta name="description" content="A short intake before a Signal Shift Decision Read: the decision, the lane, the timing and what is at stake. Decision Snapshots start at $1,000.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
@@ -209,7 +209,6 @@ blockquote{font-size:clamp(1.5rem,3vw,2.125rem); font-style:italic; font-weight:
 .pied span{display:block; max-width:46em; margin:0 auto}
 .pied b{color:var(--gold); font-weight:600}
 </style>
-
 <style>
 /* --- LA BARRE DE NAVIGATION (25/08, demande de Tom: deux entrees, pas plus).
    Elle vit sur les trois pages et se lit pareil sur fond marine comme sur creme. */
@@ -226,231 +225,128 @@ blockquote{font-size:clamp(1.5rem,3vw,2.125rem); font-style:italic; font-weight:
 .barre__liens a:hover{color:#fff; border-bottom-color:var(--gold)}
 .barre__liens a[aria-current="page"]{color:var(--gold); border-bottom-color:var(--gold)}
 </style>
+
+<style>
+/* --- LA PRISE DE BRIEF. Une question par bloc, jamais deux colonnes: on repond en
+   descendant, et chaque reponse se relit d'un coup d'oeil avant d'envoyer. */
+.q{border-top:1px solid var(--bord); padding:2rem 0}
+.q:first-of-type{border-top:0; padding-top:0}
+.q > label,.q .titre{display:block; font-family:"Playfair Display",Georgia,serif;
+  font-size:1.25rem; font-weight:600; color:var(--ink); margin:0 0 1rem; line-height:1.3}
+.q input[type=text],.q input[type=email],.q textarea{width:100%; font:inherit;
+  color:var(--ink); background:#fff; border:1px solid var(--bord); border-radius:2px;
+  padding:.85rem 1rem}
+.q textarea{min-height:8rem; resize:vertical}
+.q input:focus,.q textarea:focus{outline:2px solid var(--gold); outline-offset:0;
+  border-color:var(--gold)}
+.choix{display:flex; flex-direction:column; gap:.65rem}
+.choix label{display:flex; align-items:flex-start; gap:.7rem; cursor:pointer;
+  font-size:var(--t-body); color:var(--ink-2)}
+.choix input{margin-top:.4rem; accent-color:var(--gold); width:1rem; height:1rem}
+.trio{display:grid; grid-template-columns:repeat(auto-fit,minmax(14rem,1fr)); gap:1.25rem}
+.trio label{display:block; font-family:"DM Sans",sans-serif; font-size:var(--t-label);
+  font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--or-encre);
+  margin-bottom:.5rem}
+.envoi{margin-top:2.5rem; display:flex; flex-wrap:wrap; align-items:center; gap:1.5rem}
+button.cta{border:0; cursor:pointer; font:inherit; font-size:.9375rem; font-weight:700;
+  letter-spacing:.08em; text-transform:uppercase; padding:1.05rem 2rem}
+.prix{font-size:var(--t-note); color:var(--ink-3)}
+.merci{margin-top:1.75rem; padding:1.15rem 1.25rem; border-left:2px solid var(--gold);
+  background:#fff; font-size:var(--t-note); color:var(--ink-2); display:none}
+.merci.vu{display:block}
+</style>
 </head>
 <body>
-<nav class="barre"><a class="barre__nom" href="/before-the-next-move.html">Tom Scally <span>Signal Shift</span></a><div class="barre__liens"><a href="/about-tom.html">About Tom</a><a href="/get-a-decision-read.html">Get a Decision Read</a></div></nav>
-
-<!-- ============================ OUVERTURE ============================ -->
-<section class="bande bande--navy hero">
-  <div class="dedans">
-    <div class="hero__haut">
-    <div class="hero__mot">
-      <span class="etiq">Signal Shift</span>
-      <h1>Before the<span class="rupture">Next Move.</span></h1>
-      <p class="lead" style="margin-top:1.75rem">Independent, evidence-based review for
-        decisions with real capital, credibility, or momentum riding on them — before you
-        commit, and again after, to see if the market agreed.</p>
-      <div class="boutons">
-        <a class="cta cta--plein" href="/get-a-decision-read.html">Get a Decision Read →</a>
-        <a class="cta cta--nu" href="#exhibit">See a real finding ↓</a>
-      </div>
-    </div>
-    <div class="portrait">
-      <img src="tom.png" alt="Tom Scally, creator of Signal Shift" width="620" height="774">
-    </div>
-    </div>
-    <div class="trace">
-      <svg viewBox="0 0 1200 260" fill="none" aria-hidden="true" preserveAspectRatio="none">
-        <line x1="0" y1="176" x2="1200" y2="176" stroke="rgba(201,168,76,.18)" stroke-width="1"/>
-        <line x1="720" y1="26" x2="720" y2="240" stroke="rgba(201,168,76,.3)" stroke-width="1" stroke-dasharray="4 7"/>
-        <path d="M0 176 C 220 176, 430 172, 600 160 C 690 152, 706 96, 720 62"
-              stroke="#c9a84c" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M720 62 C 748 122, 820 178, 980 196 C 1080 206, 1150 208, 1200 209"
-              stroke="#4f7ca8" stroke-width="2.5" stroke-linecap="round"/>
-        <circle cx="720" cy="62" r="5" fill="#c9a84c"/>
-      </svg>
-      <div class="trace__leg"><span>Internal conviction</span><span>The decision gap</span></div>
-    </div>
+<nav class="barre"><a class="barre__nom" href="/before-the-next-move.html">Tom Scally <span>Signal Shift</span></a><div class="barre__liens"><a href="/about-tom.html">About Tom</a><a href="/get-a-decision-read.html" aria-current="page">Get a Decision Read</a></div></nav>
+<section class="bande bande--navy">
+  <div class="dedans prose">
+    <span class="etiq">Get a Decision Read</span>
+    <h1 style="font-size:clamp(2.25rem,5.4vw,3.5rem)">Tell us the decision.</h1>
+    <p class="lead" style="margin-top:1.5rem">A short intake, then Tom reviews it himself and
+      comes back to you on whether a Decision Read is the right instrument for this move.</p>
   </div>
 </section>
 
-<!-- ============================ LA PREMISSE ============================ -->
 <section class="bande bande--creme">
-  <div class="dedans">
-    <span class="etiq">The premise</span>
-    <h2>Companies decide internally.<br>The outcome happens externally.</h2>
-    <div class="duo">
-      <div class="carte">
-        <h3>What leadership knows</h3>
-        <p>Experience, financial models, customer knowledge, internal data. Real, and often
-          deep — built from years inside the business.</p>
+  <div class="dedans" style="max-width:44rem">
+    <form id="intake" novalidate>
+      <div class="q">
+        <label for="q1">What decision are you considering?</label>
+        <input type="text" id="q1" name="What decision are you considering?"
+               placeholder="In one line">
       </div>
-      <div class="carte">
-        <h3>What the market decides</h3>
-        <p>Customers, investors, partners, and competitors have no obligation to see it the
-          same way. They form their own view, separately.</p>
+      <div class="q">
+        <span class="titre">Which decision lane best describes it?</span>
+<div class="choix"><label><input type="radio" name="Which decision lane best describes it?" value="Market &amp; Launch"><span>Market &amp; Launch</span></label><label><input type="radio" name="Which decision lane best describes it?" value="Capital &amp; Investor Narrative"><span>Capital &amp; Investor Narrative</span></label><label><input type="radio" name="Which decision lane best describes it?" value="Partnerships &amp; Commercial Growth"><span>Partnerships &amp; Commercial Growth</span></label></div>
       </div>
-    </div>
-    <p class="souligne">Signal Shift tests whether current external evidence supports
-      internal confidence — before significant resources are committed, and again after, to
-      see whether the market responded as expected.</p>
-  </div>
-</section>
-
-<!-- ============================ AVANT / APRES ============================ -->
-<section class="bande bande--sable">
-  <div class="dedans">
-    <div class="duo">
-      <div class="volet">
-        <span class="etiq">Before</span>
-        <h3>Should we make this move?</h3>
-        <p>Not a prediction. A structured, evidence-based read on how well the decision is
-          currently supported.</p>
-        <div class="portee">
-          <p>This applies wherever leadership is about to commit real time, money, or
-            credibility to a decision the market will ultimately judge:</p>
-          <ul>
-            <li>A brand or communications push</li>
-            <li>A product or feature launch</li>
-            <li>A fundraise or investor narrative</li>
-            <li>A major partnership announcement</li>
-          </ul>
-        </div>
-        <ul class="liste">
-          <li>Competitive positioning &amp; timing</li>
-          <li>Market conditions &amp; audience priorities</li>
-          <li>Whether the differentiation claim is already taken</li>
-          <li>What's economically exposed if a key assumption is wrong</li>
-        </ul>
-        <div class="verdict">
-          <span class="quoi">A Snapshot ends in one of three verdicts:</span>
-          <ul>
-            <li>Proceed<span>as planned</span></li>
-            <li>Adjust<span>then move</span></li>
-            <li>Reconsider<span>the move itself</span></li>
-          </ul>
+      <div class="q">
+        <label for="q3">Briefly describe the decision.</label>
+        <textarea id="q3" name="Briefly describe the decision."></textarea>
+      </div>
+      <div class="q">
+        <span class="titre">When do you expect to make it?</span>
+<div class="choix"><label><input type="radio" name="When do you expect to make it?" value="Within 30 days"><span>Within 30 days</span></label><label><input type="radio" name="When do you expect to make it?" value="1&ndash;3 months"><span>1&ndash;3 months</span></label><label><input type="radio" name="When do you expect to make it?" value="3&ndash;6 months"><span>3&ndash;6 months</span></label><label><input type="radio" name="When do you expect to make it?" value="Exploring / no fixed date"><span>Exploring / no fixed date</span></label></div>
+      </div>
+      <div class="q">
+        <span class="titre">What's potentially at stake?</span>
+<div class="choix"><label><input type="radio" name="What's potentially at stake?" value="Under $25K"><span>Under $25K</span></label><label><input type="radio" name="What's potentially at stake?" value="$25K&ndash;$100K"><span>$25K&ndash;$100K</span></label><label><input type="radio" name="What's potentially at stake?" value="$100K&ndash;$500K"><span>$100K&ndash;$500K</span></label><label><input type="radio" name="What's potentially at stake?" value="$500K+"><span>$500K+</span></label><label><input type="radio" name="What's potentially at stake?" value="Primarily credibility/reputation rather than direct spend"><span>Primarily credibility/reputation rather than direct spend</span></label></div>
+      </div>
+      <div class="q">
+        <div class="trio">
+          <div><label for="nom">Name</label>
+            <input type="text" id="nom" name="Name"></div>
+          <div><label for="cie">Company</label>
+            <input type="text" id="cie" name="Company"></div>
+          <div><label for="mel">Email</label>
+            <input type="email" id="mel" name="Email"></div>
         </div>
       </div>
-      <div class="volet">
-        <span class="etiq">After</span>
-        <h3>Did the market respond as expected?</h3>
-        <p>Once the move is made, the same method examines what actually happened —
-          separating real reach from real authority.</p>
-        <ul class="liste">
-          <li>Earned coverage vs. paid syndication</li>
-          <li>Share of voice against named competitors</li>
-          <li>Whether visibility is compounding, or already decaying</li>
-          <li>What changed — and what should inform the next move</li>
-        </ul>
+      <div class="envoi">
+        <button class="cta cta--plein" type="submit">Submit for review</button>
+        <span class="prix">Decision Snapshots start at $1,000.</span>
       </div>
-    </div>
-    <p class="note prose" style="margin-top:2.75rem">We won't hand you a precise
-      probability we can't defend, or a score dressed up as more scientific than it is. If
-      we can't show our reasoning, we don't give you the number.</p>
+      <div class="merci" id="merci"></div>
+    </form>
   </div>
 </section>
 
-<!-- ============================ LE CAS ============================ -->
-<section class="bande bande--navy" id="exhibit">
-  <div class="dedans">
-    <span class="etiq">Exhibit A — Bitcoin Ocean</span>
-    <h2>Winning visibility.<br>Racing to lock authority.</h2>
-    <p class="lead prose" style="margin-top:1.75rem"><strong>The catch:</strong> fourteen
-      days after a major announcement, Signal Shift flagged that a direct competitor was
-      about to raise the industry's compliance bar — and specified exactly what needed to
-      happen before that competitor's move hardened into the new default comparison.</p>
-
-    <div class="stats">
-      <div class="stat"><b>65M+</b><span>Potential impressions — 6× the nearest competitor in the same window</span></div>
-      <div class="stat"><b>63.8%</b><span>Share of voice across 36 placements</span></div>
-      <div class="stat"><b>86%</b><span>Of that volume was automated syndication, not earned editorial</span></div>
-    </div>
-
-    <div class="prose">
-      <p>On its own numbers, the announcement itself looked like a clear win. Bitcoin
-        Ocean's Nov 11 SOC 2 announcement dominated the news cycle that followed.</p>
-      <p>A media-monitoring dashboard would have stopped there. What it wouldn't have shown:
-        a direct competitor was about to announce a <strong>higher compliance standard</strong>
-        — and despite entering later and with far less reach, would earn the kind of
-        crypto-native validation (exchange visibility, community endorsement,
-        technical-outlet coverage) that Bitcoin Ocean's syndication-led campaign hadn't yet
-        secured.</p>
-    </div>
-
-    <div class="trouve prose">
-      <p><b>The finding:</b> visibility and authority aren't the same thing, and they don't
-        arrive on the same timeline. Bitcoin Ocean won the awareness race. The read specified
-        exactly what would need to happen next to win the trust race too — before the window
-        closed.</p>
-    </div>
-    <div class="contre">
-      <p><strong>A separate launch we reviewed</strong> generated 376 paid postings and an
-        estimated 821M in potential reach — and zero independent editorial coverage. It
-        didn't rank on page one for any term a real buyer would search. Same gap, different
-        company: activity without impact.</p>
-      <p style="margin-top:1.15rem"><b>This is the part that doesn't wait for you to
-        notice:</b> competitive windows close on their own schedule, not yours. Whatever
-        you're about to announce is being measured against whatever your closest competitor
-        does next. The question isn't just whether your move is good — it's whether it's
-        still good by the time the market finishes reacting to it.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============================ LA DECISION HUMAINE ============================ -->
-<section class="bande bande--sable">
-  <div class="dedans">
-    <span class="etiq">The human decision layer</span>
-    <div class="duo duo--cit">
-      <blockquote>“The system provides the evidence. Experience provides the judgment.
-        Leadership makes the decision.”</blockquote>
-      <div>
-        <p>AI has made information and analysis widely available — that isn't the problem
-          Signal Shift solves. The harder question is what the evidence means for this
-          decision, at this company, right now.</p>
-        <p>AI will mostly evaluate the assumptions you give it. Signal Shift independently
-          tests those assumptions against what's actually happening outside your company,
-          and shows you where the two disagree — with someone accountable for the read, not
-          a model with nothing at stake if it's wrong.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================ L'INVESTISSEMENT ============================ -->
-<section class="bande bande--creme">
-  <div class="dedans">
-    <span class="etiq">Investment</span>
-    <h2>Priced for the decision, not the report.</h2>
-    <div class="prix">
-      <div class="offre offre--phare">
-        <h3>Decision Snapshot</h3>
-        <span class="montant">Starting at $1,000</span>
-        <p>A focused read on one specific decision — what's supported, what's exposed, and a
-          Proceed / Adjust / Reconsider recommendation.</p>
-      </div>
-      <div class="offre">
-        <h3>Snapshot + Advisory Session</h3>
-        <span class="montant">Scoped</span>
-        <span class="apres">after intake</span>
-        <p>Everything in the Snapshot, plus a working session with Tom to apply the read to
-          your specific situation and choose the next move.</p>
-      </div>
-      <div class="offre">
-        <h3>Before + After</h3>
-        <span class="montant">Scoped</span>
-        <span class="apres">after intake</span>
-        <p>For the decisions where getting it right matters most — the full pre-decision
-          read, plus a post-decision comparison against the original thesis.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================ CLOTURE ============================ -->
-<section class="bande bande--navy final">
-  <div class="dedans">
-    <h2>Before your next move</h2>
-    <p class="lead prose">You may not need more activity, and you may not need another
-      strategy. You may need to know what's closing in on the move you're about to make —
-      before the market decides for you.</p>
-    <div class="boutons">
-      <a class="cta cta--plein" href="/get-a-decision-read.html">Get a Decision Read →</a>
-    </div>
-  </div>
-</section>
-
-<p class="pied"><span>Outside evidence. Commercial judgment. Better decisions. — <b style="white-space:nowrap">Tom Scally</b></span></p>
-
+<script>
+/* L'ENVOI SANS SERVEUR, ET SANS PROMESSE EN L'AIR (25/08).
+   La page est servie par GitHub Pages: il n'y a personne pour recevoir un formulaire. On
+   ne fait donc pas semblant. Au clic, on compose le message, on le met dans le
+   presse-papier ET on ouvre le courrier prerempli: si le visiteur n'a pas de client mail
+   par defaut, le piege deja vecu sur ce site en juin, il lui reste le texte copie et
+   l'adresse a l'ecran. */
+(function () {
+  var f = document.getElementById('intake');
+  var m = document.getElementById('merci');
+  var ADRESSE = 'tom@tomscally.com';
+  f.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var lignes = [];
+    f.querySelectorAll('input[type=text],input[type=email],textarea').forEach(function (el) {
+      if (el.value.trim()) { lignes.push(el.name + '\n' + el.value.trim()); }
+    });
+    var vus = {};
+    f.querySelectorAll('input[type=radio]:checked').forEach(function (el) {
+      if (!vus[el.name]) { vus[el.name] = 1; lignes.push(el.name + '\n' + el.value); }
+    });
+    if (!lignes.length) {
+      m.textContent = 'Add at least the decision and your email, then submit again.';
+      m.classList.add('vu');
+      return;
+    }
+    var texte = lignes.join('\n\n');
+    if (navigator.clipboard) { navigator.clipboard.writeText(texte).catch(function () {}); }
+    window.location.href = 'mailto:' + ADRESSE
+      + '?subject=' + encodeURIComponent('Decision Read request')
+      + '&body=' + encodeURIComponent(texte);
+    m.innerHTML = 'Your answers are copied to your clipboard, and a message to <strong>'
+      + ADRESSE + '</strong> should be opening. If nothing opened, paste them into an email '
+      + 'to that address and Tom will come back to you.';
+    m.classList.add('vu');
+  });
+})();
+</script>
 </body>
 </html>
