@@ -1,662 +1,479 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tom Scally | Signal Shift – External Read Before the Next Move</title>
-<meta name="description" content="Signal Shift gives leadership teams a clearer external read on market perception, competitive positioning, visibility, partnerships, and business development opportunities before the next move.">
-<meta name="google-site-verification" content="Hhj5-2qzj0skdOYXNaHEsvFF97NV9-7YzJacl1uzit0" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tom Scally | Signal Shift — Before the Next Move</title>
+<link rel="canonical" href="https://tomscally.com/">
+<meta name="description" content="Independent, evidence-based review for decisions with real capital, credibility or momentum riding on them — before you commit, and again after.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<!-- Calendly badge widget begin -->
-<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-<!-- Calendly badge widget end -->
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
 <style>
-:root {
-  --navy: #0c1b2e;
-  --navy-mid: #162a45;
-  --navy-light: #1e3655;
-  --gold: #c9a84c;
-  --gold-soft: #d4b96e;
-  --gold-glow: rgba(201, 168, 76, 0.12);
-  --white: #ffffff;
-  --off-white: #f7efca;
-  --cream: #faf9f6;
-  --text-dark: #0c1b2e;
-  --text-body: #3a3f4b;
-  --text-muted: #6b7082;
-  --border: #e4e3df;
+/* ============================================================================
+   SIGNAL SHIFT — BEFORE THE NEXT MOVE
+   Jetons repris de tomscally.com pour que la page soit du MEME site, pas une
+   piece rapportee: marine, or, creme, Playfair Display + DM Sans.
+
+   TROIS REGLES DE MISE EN TEXTE, tenues partout:
+     1. la mesure ne depasse jamais 34em (~64 signes). La version precedente
+        courait jusqu'a 121 signes par ligne, l'oeil y perd sa ligne;
+     2. QUATRE tailles de corps, pas huit. 11 px etiquette, 17 px courant,
+        20 px chapeau, 15 px note;
+     3. TROIS encres, pas une seule. Le gris unique de la version precedente
+        aplatissait vingt-cinq paragraphes sur vingt-six.
+   ========================================================================= */
+:root{
+  --navy:#0c1b2e; --navy-mid:#162a45; --navy-light:#1e3655;
+  --gold:#c9a84c; --gold-soft:#d4b96e;
+  --cream:#faf9f6; --off-white:#f7efca;
+  --ink:#0c1b2e; --ink-2:#3a3f4b; --ink-3:#5c6175;
+  --sur-navy:#e9eef5; --sur-navy-2:#9fb0c6; --sur-navy-3:#8398b3;
+  --bord:#e4e3df; --bord-navy:rgba(201,168,76,.22);
+  /* L'OR EST UNE ENCRE DE FOND SOMBRE. Pose sur la creme a 12 px il tombe a un rapport
+     de contraste de 2, mesure a la sonde: illisible. Sur fond clair on prend sa version
+     encrée, qui garde la couleur et passe les seuils. */
+  --or-encre:#7a5c0c;
+
+  --t-label:.72rem; --t-note:.9375rem; --t-body:1.0625rem; --t-lead:1.25rem;
+  --mesure:34em;
+  --pad:clamp(1.5rem,6vw,7rem);
 }
-
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: 'DM Sans', sans-serif;
-  color: var(--text-body);
-  background: var(--off-white);
-  line-height: 1.75;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--cream); color:var(--ink-2);
+  font:400 var(--t-body)/1.68 "DM Sans",system-ui,sans-serif;
+  -webkit-font-smoothing:antialiased;
 }
+h1,h2,h3,blockquote{font-family:"Playfair Display",Georgia,serif;color:var(--ink);
+  font-weight:700; line-height:1.12; letter-spacing:-.01em; margin:0}
+p{margin:0 0 1.15em}
+p:last-child{margin-bottom:0}
+strong{color:var(--ink); font-weight:600}
+a{color:inherit}
 
-.container { max-width: 1100px; margin: 0 auto; padding: 0 2rem; }
-.serif { font-family: 'Playfair Display', Georgia, serif; }
+/* --- LA BANDE, unite de rythme de la page. Elles alternent, comme sur le site. */
+.bande{padding:clamp(3.75rem,9vw,7.5rem) var(--pad)}
+.bande--navy{background:var(--navy); color:var(--sur-navy-2)}
+.bande--navy h1,.bande--navy h2,.bande--navy h3,.bande--navy blockquote{color:#fff}
+.bande--navy strong{color:#fff}
+.bande--creme{background:var(--cream)}
+.bande--sable{background:var(--off-white)}
+.dedans{max-width:76rem; margin:0 auto}
+.prose{max-width:var(--mesure)}
+.lead{font-size:var(--t-lead); line-height:1.55; color:var(--ink-2)}
+.bande--navy .lead{color:var(--sur-navy)}
+.note{font-size:var(--t-note); color:var(--ink-3); line-height:1.6}
+.bande--navy .note{color:var(--sur-navy-3)}
 
-.gold-rule { width: 40px; height: 2px; background: var(--gold); }
-.section-tag {
-  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.2em;
-  text-transform: uppercase; color: var(--gold);
-}
+/* --- L'ETIQUETTE DE SECTION. Une seule taille, une seule graisse, partout. */
+.etiq{display:block; font-size:var(--t-label); font-weight:700; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--or-encre); margin:0 0 1.25rem}
+.etiq::before{content:""; display:inline-block; width:1.75rem; height:1px;
+  background:var(--gold); vertical-align:.28em; margin-right:.6rem}
+.bande--navy .etiq{color:var(--gold)}
 
-/* === ANIMATIONS === */
-.r { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(.23,1,.32,1), transform 0.7s cubic-bezier(.23,1,.32,1); }
-.r.v { opacity: 1; transform: translateY(0); }
+h1{font-size:clamp(2.75rem,7.2vw,4.75rem)}
+h2{font-size:clamp(1.85rem,3.6vw,2.85rem)}
+h3{font-size:1.1875rem; font-weight:600; letter-spacing:0}
 
-/* === NAV === */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  padding: 1.1rem 2rem;
-  display: flex; justify-content: space-between; align-items: center;
-  transition: all 0.4s ease;
-}
-nav.scrolled { background: rgba(12,27,46,0.97); backdrop-filter: blur(12px); box-shadow: 0 1px 20px rgba(0,0,0,0.12); padding: 0.75rem 2rem; }
-nav .logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--white); text-decoration: none; letter-spacing: 0.01em; }
-nav .logo span { color: var(--gold); }
-nav .nav-right { display: flex; align-items: center; gap: 1rem; }
-nav .nav-link { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.3s; }
-nav .nav-link:hover { color: var(--white); }
-nav .nav-link svg { width: 18px; height: 18px; vertical-align: middle; fill: currentColor; }
-nav .nav-cta {
-  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--navy); background: var(--gold); text-decoration: none;
-  padding: 0.55rem 1.3rem; transition: all 0.3s;
-}
-nav .nav-cta:hover { background: var(--gold-soft); }
+/* --- LES BOUTONS. Deux niveaux, jamais trois. */
+.cta{display:inline-flex; align-items:center; gap:.55rem; font-family:"DM Sans",sans-serif;
+  font-size:.9375rem; font-weight:700; letter-spacing:.02em; text-decoration:none;
+  padding:.95rem 1.6rem; border-radius:2px; transition:transform .16s, background .16s}
+.cta--plein{background:var(--gold); color:var(--navy)}
+.cta--plein:hover{background:var(--gold-soft); transform:translateY(-1px)}
+.cta--nu{color:var(--sur-navy); border-bottom:1px solid var(--bord-navy);
+  padding:.35rem 0; border-radius:0}
+.cta--nu:hover{color:var(--gold)}
+.boutons{display:flex; flex-wrap:wrap; align-items:center; gap:1.75rem; margin-top:2.5rem}
 
-/* === HERO === */
-.hero {
-  min-height: auto; background: var(--navy); display: flex; align-items: center;
-  position: relative; overflow: hidden;
-}
-.hero::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
-.hero .container {
-  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 4rem; align-items: center;
-  padding-top: 5rem; padding-bottom: 3.5rem;
-}
-.hero-text { animation: fadeUp 0.9s cubic-bezier(.23,1,.32,1) 0.2s both; }
-@keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+/* ============================ OUVERTURE ============================ */
+.hero{position:relative; overflow:hidden}
+.hero .dedans{display:grid; gap:clamp(2.5rem,5vw,4.5rem)}
+.hero__haut{display:grid; gap:clamp(2rem,4vw,3.5rem); align-items:center}
+@media(min-width:960px){.hero__haut{grid-template-columns:1.15fr .85fr}}
+.hero__mot{max-width:36rem}
+/* LE PORTRAIT, REPRIS DE SA PAGE D'ACCUEIL: meme halo, meme ombre portee. Une page qui
+   vend un jugement HUMAIN montre l'humain; sans lui, la moitie droite de l'ouverture
+   etait un aplat de marine. */
+.portrait{position:relative; display:flex; justify-content:center; align-items:flex-end}
+.portrait::before{content:""; position:absolute; bottom:4%; left:50%;
+  transform:translateX(-50%); width:116%; height:92%; border-radius:50%;
+  background:radial-gradient(circle, rgba(201,168,76,.26) 0%, rgba(201,168,76,.10) 42%,
+  transparent 68%); z-index:0; pointer-events:none}
+.portrait img{position:relative; z-index:1; width:100%; max-width:380px; height:auto;
+  display:block; filter:drop-shadow(0 24px 48px rgba(0,0,0,.42))}
+@media(max-width:959px){.portrait img{max-width:280px}}
+.hero h1 .rupture{display:block; color:var(--gold)}
+/* LE TRACE. Une ligne plate qui se casse: c'est le sujet de la page, il merite
+   la moitie de l'ouverture et pas une frise decorative de 90 px. */
+.trace{position:relative}
+.trace svg{display:block; width:100%; height:clamp(150px,20vw,260px)}
+.trace__leg{display:flex; justify-content:space-between; gap:1rem; margin-top:1rem;
+  font-size:var(--t-label); font-weight:700; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--sur-navy-3)}
+.trace__leg span:last-child{color:var(--gold)}
+.trace path{stroke-dasharray:1400; stroke-dashoffset:1400; animation:tracer 2.4s .3s ease-out forwards}
+@keyframes tracer{to{stroke-dashoffset:0}}
+@media (prefers-reduced-motion:reduce){.trace path{animation:none; stroke-dashoffset:0}}
 
-.hero-text .section-tag { animation: fadeUp 0.7s ease 0.5s both; }
-.hero h1 {
-  /* Le titre etait la baseline "External Read. Before the Next Move.", retiree a la
-     demande de Tom (02/08). Reduit a son nom, il tombait a la meme taille que le logo de
-     la barre du haut, deux lignes identiques l'une sous l'autre. On lui rend son rang. */
-  font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 2.9rem);
-  font-weight: 800; color: var(--white); line-height: 1.1; margin: 0.5rem 0 0.2rem;
-  white-space: nowrap;
-}
-.hero h1 em { font-style: italic; color: var(--gold); }
-.hero-sub { font-size: 1.02rem; color: rgba(255,255,255,0.55); line-height: 1.8; margin-bottom: 2rem; max-width: 500px; }
-.hero-list { margin: 0 0 1.6rem; padding-left: 1.15rem; max-width: 500px;
-  list-style: disc; color: rgba(255,255,255,0.55); font-size: 1.02rem; line-height: 1.7; }
-.hero-list li { margin-bottom: 0.28rem; }
-.hero-list li::marker { color: var(--gold); }
-.hero-goldsub { font-family: 'Playfair Display', serif; font-style: italic; color: var(--gold); font-size: clamp(1.05rem, 1.8vw, 1.35rem); line-height: 1.4; margin: 0.5rem 0 1.5rem; max-width: 520px; }
-.hero-btns { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
-.btn-primary {
-  display: inline-flex; align-items: center; gap: 0.6rem;
-  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--navy); background: var(--gold); text-decoration: none; padding: 0.9rem 1.8rem;
-  transition: all 0.3s;
-}
-.btn-primary:hover { background: var(--gold-soft); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(201,168,76,0.25); }
-.btn-outline {
-  display: inline-flex; align-items: center; gap: 0.6rem;
-  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--gold); background: transparent; border: 1px solid rgba(201,168,76,0.4);
-  text-decoration: none; padding: 0.9rem 1.8rem; transition: all 0.3s;
-}
-.btn-outline:hover { border-color: var(--gold); background: rgba(201,168,76,0.06); }
-.btn-arrow { width: 14px; height: 14px; transition: transform 0.3s; }
-.btn-primary:hover .btn-arrow, .btn-outline:hover .btn-arrow { transform: translateX(3px); }
+/* ============================ DEUX COLONNES ============================ */
+.duo{display:grid; gap:clamp(1.25rem,3vw,2rem); margin-top:2.75rem}
+@media(min-width:820px){.duo{grid-template-columns:1fr 1fr}}
+.carte{background:#fff; border:1px solid var(--bord); border-radius:3px;
+  padding:clamp(1.5rem,2.6vw,2.25rem)}
+.bande--sable .carte{background:#fff}
+.carte h3{margin-bottom:.7rem}
+.carte p{font-size:var(--t-body); color:var(--ink-2)}
+.souligne{border-left:2px solid var(--gold); padding-left:1.5rem; margin-top:2.75rem;
+  max-width:var(--mesure); font-size:var(--t-lead); line-height:1.55; color:var(--ink)}
 
-.hero-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; animation: fadeUp 0.8s ease 1s both; }
-.hero-tags span { font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.35); padding: 0.35rem 0.75rem; border: 1px solid rgba(255,255,255,0.07); }
+/* ============================ AVANT / APRES ============================ */
+.volet h3{font-size:1.5rem; font-family:"Playfair Display",serif; font-weight:700;
+  line-height:1.2; margin:.35rem 0 .9rem}
+.volet .etiq{margin-bottom:.35rem}
+.liste{list-style:none; margin:1.5rem 0 0; padding:0}
+.liste li{position:relative; padding:.7rem 0 .7rem 1.6rem; border-top:1px solid var(--bord);
+  font-size:var(--t-body); color:var(--ink-2)}
+.liste li::before{content:"—"; position:absolute; left:0; color:var(--gold)}
+/* LES TROIS VERDICTS NE SONT PAS DES BOUTONS.
+   Premiere version: trois pastilles arrondies, la premiere pleine en or. Elles avaient
+   exactement la forme de l'appel a l'action juste au-dessus, et elles ne cliquent pas.
+   Un element qui a la forme d'une commande et n'en est pas une ment au lecteur. Ici c'est
+   du VOCABULAIRE: les trois issues possibles d'un Snapshot. Donc ni fond, ni coin
+   arrondi, ni contour: une legende, lue comme une legende. */
+.portee{margin-top:1.5rem; padding-left:1.5rem; border-left:2px solid var(--gold)}
+.portee p{font-size:var(--t-note); color:var(--ink-3); margin-bottom:.6rem}
+.portee ul{list-style:none; margin:0; padding:0}
+.portee li{position:relative; padding:.2rem 0 .2rem 1.35rem; font-size:var(--t-body);
+  color:var(--ink)}
+.portee li::before{content:"—"; position:absolute; left:0; color:var(--gold)}
+.verdict{margin-top:1.75rem}
+.verdict .quoi{display:block; font-size:var(--t-note); color:var(--ink-3);
+  margin-bottom:.7rem}
+.verdict ul{display:flex; flex-wrap:wrap; gap:0; list-style:none; margin:0; padding:0;
+  border-top:1px solid var(--bord)}
+.verdict li{flex:1 1 7rem; padding:.85rem 0 0; border-top:2px solid transparent;
+  margin-top:-1px; font-family:"Playfair Display",serif; font-size:1.0625rem;
+  font-weight:600; color:var(--ink)}
+.verdict li:nth-child(1){border-top-color:var(--gold)}
+.verdict li:nth-child(2){border-top-color:#b9b4a4}
+.verdict li:nth-child(3){border-top-color:#cfcabb}
+.verdict li span{display:block; font-family:"DM Sans",sans-serif; font-size:var(--t-note);
+  font-weight:400; color:var(--ink-3); margin-top:.2rem}
+.trace__leg span:last-child{color:var(--gold)}
 
-.hero-photo {
-  display: flex; justify-content: center; align-items: center;
-  animation: fadeUp 1s ease 0.4s both;
-}
+/* ============================ LE CAS ============================ */
+.stats{display:grid; gap:1px; background:var(--bord-navy); border:1px solid var(--bord-navy);
+  margin:clamp(2.5rem,5vw,3.5rem) 0}
+@media(min-width:760px){.stats{grid-template-columns:repeat(3,1fr)}}
+.stat{background:var(--navy); padding:clamp(1.75rem,3vw,2.5rem)}
+.stat b{display:block; font-family:"Playfair Display",serif; font-weight:700;
+  font-size:clamp(2.5rem,5vw,3.5rem); line-height:1; color:var(--gold); letter-spacing:-.02em}
+.stat span{display:block; margin-top:.9rem; font-size:var(--t-note); line-height:1.5;
+  color:var(--sur-navy-2)}
+.trouve{border-left:2px solid var(--gold); padding-left:1.5rem; margin:2.25rem 0;
+  max-width:var(--mesure)}
+.trouve b{color:#fff}
+.contre{background:var(--navy-mid); border:1px solid var(--bord-navy); border-radius:3px;
+  padding:clamp(1.5rem,3vw,2rem); margin-top:2.5rem; max-width:38rem}
+.contre p{font-size:var(--t-body); color:var(--sur-navy-2)}
+.contre b{color:var(--gold)}
 
-/* === LOGO STRIP === */
-.logos {
-  padding: 2.5rem 0; background: var(--cream); border-bottom: 1px solid var(--border);
-}
-.logos .container { text-align: center; }
-.logos .label { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; }
-.logos .logo-grid {
-  display: flex; justify-content: center; align-items: center; gap: 3rem; flex-wrap: wrap;
-  opacity: 0.35; filter: grayscale(1);
-}
-.logos .logo-grid span {
-  font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 700;
-  color: var(--text-dark); letter-spacing: 0.02em;
-}
+/* ============================ CITATION ============================ */
+blockquote{font-size:clamp(1.5rem,3vw,2.125rem); font-style:italic; font-weight:400;
+  line-height:1.34; margin:0; max-width:30rem}
+.duo--cit{align-items:start}
 
-/* === PROBLEM === */
-.problem { padding: 6rem 0; background: var(--navy); }
-.problem .container { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 4rem; align-items: start; }
-.problem h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 2.8vw, 2.4rem); font-weight: 700; color: var(--white); line-height: 1.2; margin: 0.75rem 0 1rem; }
-.problem p { color: rgba(255,255,255,0.72); }
-.problem-list { list-style: none; margin-top: 1.5rem; }
-.problem-list li {
-  padding: 0.9rem 0 0.9rem 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.12);
-  font-size: 0.92rem; color: rgba(255,255,255,0.62); position: relative;
-}
-.problem-list li::before { content: ''; position: absolute; left: 0; top: 1.15rem; width: 5px; height: 5px; background: var(--gold); border-radius: 50%; }
+/* ============================ PRIX ============================ */
+.prix{display:grid; gap:clamp(1rem,2vw,1.5rem); margin-top:3rem; align-items:stretch}
+@media(min-width:900px){.prix{grid-template-columns:repeat(3,1fr)}}
+.offre{display:flex; flex-direction:column; background:#fff; border:1px solid var(--bord);
+  border-radius:3px; padding:clamp(1.75rem,3vw,2.25rem)}
+.offre--phare{border-color:var(--gold); box-shadow:0 14px 40px rgba(12,27,46,.09)}
+.offre h3{font-size:1.0625rem; font-weight:700; letter-spacing:.02em; margin-bottom:1.25rem}
+.offre .montant{font-family:"Playfair Display",serif; font-size:1.875rem; font-weight:700;
+  color:var(--ink); line-height:1; display:block}
+.offre .apres{display:block; font-size:var(--t-note); color:var(--ink-3); margin-top:.5rem}
+.offre p{margin-top:1.5rem; padding-top:1.5rem; border-top:1px solid var(--bord);
+  font-size:var(--t-note); color:var(--ink-2); line-height:1.62}
+.offre--phare .montant{color:var(--or-encre)}
 
-/* === METHODOLOGY === */
-.method { padding: 6rem 0; background: var(--navy); position: relative; }
-.method::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
-.method .container { text-align: center; }
-.method h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 2.8vw, 2.4rem); font-weight: 700; color: var(--white); margin: 0.75rem 0 1rem; }
-.method > .container > p { color: rgba(255,255,255,0.5); max-width: 560px; margin: 0 auto 3rem; }
-.method-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
-.step {
-  padding: 2.5rem 1.5rem; border-right: 1px solid rgba(255,255,255,0.06);
-  transition: background 0.3s;
-}
-.step:last-child { border-right: none; }
-.step:hover { background: rgba(201,168,76,0.04); }
-.step-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 800; color: rgba(201,168,76,0.15); line-height: 1; margin-bottom: 1rem; }
-.step h3 { font-size: 1.15rem; font-weight: 700; color: var(--gold); margin-bottom: 0.75rem; }
-.step p { font-size: 1rem; color: rgba(255,255,255,0.55); line-height: 1.7; }
+/* ============================ CLOTURE ============================ */
+.final{text-align:center}
+.final .prose{margin:1.75rem auto 0}
+.final .boutons{justify-content:center}
+.pied{background:var(--navy); border-top:1px solid var(--bord-navy); margin:0;
+  padding:2rem var(--pad); text-align:center; font-size:var(--t-note); color:var(--sur-navy-3)}
+.pied span{display:block; max-width:46em; margin:0 auto}
+.pied b{color:var(--gold); font-weight:600}
+</style>
 
-/* === QUESTIONS === */
-.questions { padding: 6rem 0; background: var(--off-white); }
-.questions h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 2.8vw, 2.4rem); font-weight: 700; color: var(--text-dark); margin: 0.75rem 0 2.5rem; }
-.q-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
-.q-card {
-  background: var(--white); padding: 1.5rem; border: 1px solid var(--border);
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-.q-card:hover { border-color: var(--gold); box-shadow: 0 4px 16px rgba(201,168,76,0.08); }
-.q-card .q-mark { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 800; color: var(--gold); margin-bottom: 0.5rem; }
-.q-card p { font-size: 1.1rem; font-weight: 500; color: var(--text-dark); line-height: 1.5; }
+<style>
+/* --- LA BARRE DE NAVIGATION (25/08, demande de Tom: deux entrees, pas plus).
+   Elle vit sur les trois pages et se lit pareil sur fond marine comme sur creme. */
+.barre{background:var(--navy); border-bottom:1px solid var(--bord-navy);
+  padding:1rem var(--pad); display:flex; align-items:center; justify-content:space-between;
+  gap:1.5rem; flex-wrap:wrap}
+.barre__nom{font-family:"DM Sans",sans-serif; font-size:.78rem; font-weight:700;
+  letter-spacing:.2em; text-transform:uppercase; color:#fff; text-decoration:none}
+.barre__nom span{color:var(--gold)}
+.barre__liens{display:flex; align-items:center; gap:1.75rem}
+.barre__liens a{font-size:.78rem; font-weight:700; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--sur-navy-2); text-decoration:none;
+  padding:.35rem 0; border-bottom:1px solid transparent}
+.barre__liens a:hover{color:#fff; border-bottom-color:var(--gold)}
+.barre__liens a[aria-current="page"]{color:var(--gold); border-bottom-color:var(--gold)}
+</style>
 
-/* === SIGNAL SHIFT (navy spotlight) === */
-.signal { padding: 5.5rem 0; background: var(--navy); position: relative; overflow: hidden; }
-.signal::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
-.signal::after { content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0; background: radial-gradient(120% 80% at 50% -10%, rgba(201,168,76,0.07) 0%, transparent 55%); }
-.signal .container { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; position: relative; z-index: 1; }
-.signal h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.6rem, 2.4vw, 2rem); font-weight: 700; color: var(--white); margin: 0.75rem 0 1rem; line-height: 1.25; }
-.signal p { font-size: 0.92rem; margin-bottom: 0.75rem; color: rgba(255,255,255,0.58); }
-.ss-link { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); text-decoration: none; margin-top: 0.75rem; transition: gap 0.3s; }
-.ss-link:hover { gap: 0.8rem; }
+<style>
+/* --- LES TROIS VOIES DE DECISION (PDF de Tom, 25/08). Elles remplacent quatre puces:
+   une decision se range dans une voie, et les trois se lisent d'un coup d'oeil. Meme
+   etiquette que les sections, meme filet, aucune couleur de plus. */
+.voies{margin:1.75rem 0 2rem}
+.voies__titre{display:block; font-size:var(--t-label); font-weight:700; letter-spacing:.18em;
+  text-transform:uppercase; color:var(--or-encre); margin:0 0 1rem}
+/* TROIS COLONNES, PAS DEUX PUIS UNE: la section est deja coupee en deux volets, donc la
+   place utile fait la moitie de la page. A 11rem la troisieme voie tombait a la ligne. */
+.voies__grille{display:grid; grid-template-columns:repeat(3,1fr);
+  gap:1.1rem; border-top:1px solid var(--bord); padding-top:1.25rem}
+@media (max-width:640px){.voies__grille{grid-template-columns:1fr}}
+.voies__grille h4{margin:0 0 .45rem; font-family:"DM Sans",sans-serif; font-size:.8125rem;
+  font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--ink)}
+.voies__grille p{margin:0; font-size:var(--t-note); color:var(--ink-3); line-height:1.55}
+/* Les verdicts sans leur phrase d'introduction: trois mots, rien autour. */
+.verdict--nu .quoi{display:none}
+.verdict--nu ul li span{display:none}
+</style>
 
-/* === AUDIENCE === */
-.audience { padding: 6rem 0; background: var(--off-white); }
-.audience h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 2.8vw, 2.4rem); font-weight: 700; color: var(--text-dark); margin: 0.75rem 0 1rem; }
-.audience > .container > p { max-width: 600px; margin-bottom: 2.5rem; }
-.aud-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 0.75rem; }
-.aud-item { padding: 1rem 1.25rem; background: var(--white); border-left: 3px solid var(--gold); font-size: 0.92rem; }
-
-/* === BACKGROUND === */
-.bg-section { padding: 5rem 0; }
-.bg-section .container { max-width: 700px; }
-.bg-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 2.8vw, 2.4rem); font-weight: 700; color: var(--text-dark); margin: 0.75rem 0 1rem; }
-.bg-section p { margin-bottom: 1rem; }
-
-/* === TIERS === */
-.tiers-section { padding: 6rem 0; background: var(--navy); position: relative; }
-.tiers-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
-.tiers-section h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 2.8vw, 2.4rem); font-weight: 700; color: var(--white); text-align: center; margin: 0.75rem 0 3rem; }
-.tiers { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.25rem; }
-.tier { padding: 2.25rem 1.75rem; border: 1px solid rgba(255,255,255,0.2); transition: border-color 0.3s; }
-.tier:hover { border-color: var(--gold); }
-.tier .t-tag { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; }
-.tier h3 { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: var(--white); margin-bottom: 0.75rem; line-height: 1.25; }
-.tier p { font-size: 0.88rem; color: rgba(255,255,255,0.45); line-height: 1.7; }
-
-/* === FINAL CTA === */
-.final { padding: 6rem 0; text-align: center; }
-.final h2 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; color: var(--text-dark); margin: 0.75rem 0 1rem; }
-.final p { max-width: 520px; margin: 0 auto 2rem; color: var(--text-muted); }
-.final-btns { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
-.btn-dark {
-  display: inline-flex; align-items: center; gap: 0.6rem;
-  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--white); background: var(--navy); text-decoration: none; padding: 0.95rem 2rem;
-  transition: all 0.3s;
-}
-.btn-dark:hover { background: var(--navy-mid); transform: translateY(-2px); box-shadow: 0 6px 24px rgba(12,27,46,0.2); }
-.btn-dark-outline {
-  display: inline-flex; align-items: center; gap: 0.6rem;
-  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--navy); background: transparent; border: 1px solid var(--navy);
-  text-decoration: none; padding: 0.95rem 2rem; transition: all 0.3s;
-}
-.btn-dark-outline:hover { background: rgba(12,27,46,0.04); }
-
-/* === FOOTER === */
-footer { padding: 2rem 0; background: var(--navy); border-top: 1px solid rgba(255,255,255,0.06); }
-footer .container { display: flex; justify-content: space-between; align-items: center; }
-footer .f-name { font-family: 'Playfair Display', serif; font-size: 1rem; color: var(--white); font-weight: 600; }
-footer .f-links { display: flex; gap: 1.5rem; }
-footer .f-links a { font-size: 0.78rem; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.3s; }
-footer .f-links a:hover { color: var(--gold); }
-
-/* === MOBILE STICKY CTA === */
-.sticky-cta {
-  display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 99;
-  background: var(--navy); padding: 0.75rem 1.5rem;
-  box-shadow: 0 -2px 20px rgba(0,0,0,0.15);
-}
-.sticky-cta a {
-  display: block; text-align: center; font-size: 0.78rem; font-weight: 700;
-  letter-spacing: 0.1em; text-transform: uppercase; color: var(--navy);
-  background: var(--gold); padding: 0.85rem; text-decoration: none;
-}
-
-/* === RESPONSIVE === */
-@media (max-width: 1024px) {
-  .method-steps { grid-template-columns: repeat(2,1fr); }
-  .step { border-bottom: 1px solid rgba(255,255,255,0.06); }
-  .step:nth-child(2) { border-right: none; }
-}
-@media (max-width: 768px) {
-  .hero .container { grid-template-columns: 1fr; gap: 2rem; padding-top: 6rem; }
-  .hero-photo { order: -1; }
-  .hero h1 { white-space: normal; font-size: clamp(1.8rem, 7vw, 2.3rem); }
-  .hero-text .section-tag { letter-spacing: 0.1em; font-size: 0.6rem; white-space: nowrap; }
-  .problem .container { grid-template-columns: 1fr; gap: 2rem; }
-  .signal .container { grid-template-columns: 1fr; }
-  .method-steps { grid-template-columns: 1fr; }
-  .step { border-right: none; }
-  .tiers { grid-template-columns: 1fr; }
-  .q-grid { grid-template-columns: 1fr; }
-  footer .container { flex-direction: column; gap: 1rem; text-align: center; }
-  nav .nav-link, nav .nav-cta { display: none; }
-  .sticky-cta { display: block; }
-  .logos .logo-grid { gap: 1.5rem; }
-}
-
-/* === AESTHETIC POLISH (palette unchanged) === */
-/* Hero: soft radial gold glow + keep content above it */
-.hero::before {
-  content: ''; position: absolute; top: -20%; right: -10%;
-  width: 70vh; height: 70vh; border-radius: 50%;
-  background: radial-gradient(circle, rgba(201,168,76,0.14) 0%, rgba(201,168,76,0.05) 38%, transparent 68%);
-  pointer-events: none; z-index: 0;
-}
-.hero .container { position: relative; z-index: 1; }
-
-/* Gold gradient on the accented headline word */
-.hero h1 em {
-  background: linear-gradient(120deg, #e6d49a 0%, #c9a84c 55%, #d8be73 100%);
-  -webkit-background-clip: text; background-clip: text;
-  -webkit-text-fill-color: transparent; color: transparent;
-}
-
-/* Depth on dark sections: subtle vignette + faint top sheen */
-.method, .tiers-section { overflow: hidden; }
-.method::after, .tiers-section::after {
-  content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 0;
-  background: radial-gradient(120% 80% at 50% -10%, rgba(201,168,76,0.06) 0%, transparent 55%);
-}
-.method .container, .tiers-section .container { position: relative; z-index: 1; }
-
-/* Refined gold rule into a soft gradient */
-.gold-rule { background: linear-gradient(90deg, var(--gold), rgba(201,168,76,0.25)); }
-
-/* Micro-lift on cards */
-.q-card, .tier { transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s; }
-.q-card:hover { transform: translateY(-3px); }
-.tier:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.18); }
-.step { transition: background 0.3s, transform 0.3s; }
-.step:hover { transform: translateY(-3px); }
-
-/* Gold band: crisp top/bottom definition */
-.pressure-band { box-shadow: inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -1px 0 rgba(12,27,46,0.15); }
-
-/* Slightly tighter, more elegant hero headline */
-.hero h1 { letter-spacing: -0.015em; }
-.serif { letter-spacing: -0.01em; }
-
-/* Hero portrait (cutout on gold halo, blazer reads against navy) */
-.tom-portrait { position: relative; display: flex; justify-content: center; align-items: flex-end; width: 100%; }
-.tom-portrait::before {
-  content: ''; position: absolute; bottom: 4%; left: 50%; transform: translateX(-50%);
-  width: 116%; height: 92%; border-radius: 50%;
-  background: radial-gradient(circle, rgba(201,168,76,0.26) 0%, rgba(201,168,76,0.10) 42%, transparent 68%);
-  z-index: 0; pointer-events: none;
-}
-.tom-portrait img {
-  position: relative; z-index: 1; width: 100%; max-width: 440px; height: auto; display: block;
-  filter: drop-shadow(0 24px 48px rgba(0,0,0,0.42));
-}
-@media (max-width: 768px) {
-  .tom-portrait img { max-width: 290px; }
-}
-
-/* === RESTRUCTURE 2026-07-28 (Tom: commercial diagnostic direction) === */
-/* Dark statement band: used by "Why Act Now" */
-.stmt { padding: 5rem 0; background: var(--navy); position: relative; overflow: hidden; }
-.stmt::before { content:''; position:absolute; top:0; left:0; right:0; height:1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
-.stmt::after { content:''; position:absolute; inset:0; pointer-events:none; background: radial-gradient(120% 80% at 50% -10%, rgba(201,168,76,0.06) 0%, transparent 55%); }
-.stmt .container { max-width: 800px; position: relative; z-index: 1; }
-.stmt p { color: rgba(255,255,255,0.66); margin-bottom: 1rem; }
-.stmt p:last-child { margin-bottom: 0; }
-.stmt .lead { font-family: 'Playfair Display', serif; font-size: clamp(1.35rem, 2.4vw, 1.85rem); font-weight: 700; color: var(--white); line-height: 1.35; margin-bottom: 1.25rem; }
-
-/* Light panel: used by "What Signal Shift Provides" */
-.panel { background: var(--white); border: 1px solid var(--border); border-left: 3px solid var(--gold); padding: 2.25rem 2rem; margin-top: 2.5rem; }
-.panel h3 { font-family: 'Playfair Display', serif; font-size: clamp(1.25rem, 2.1vw, 1.6rem); font-weight: 700; color: var(--text-dark); line-height: 1.3; margin: 0.75rem 0 1rem; }
-.panel-lead { font-family: 'Playfair Display', serif; font-size: clamp(1.1rem, 1.9vw, 1.35rem); font-weight: 600; color: var(--text-dark); line-height: 1.45; margin-bottom: 1.25rem; }
-.panel p { margin-bottom: 0.9rem; }
-.panel p:last-child { margin-bottom: 0; }
-.panel ul { margin: 0.6rem 0 1.1rem; padding-left: 1.3rem; list-style: disc; }
-.panel li { margin-bottom: 0.4rem; }
-
-.lead-stmt { font-family: 'Playfair Display', serif; font-size: clamp(1.35rem, 2.4vw, 1.85rem); font-weight: 700; color: var(--text-dark); line-height: 1.35; }
-
-/* Closing stack: used by "Before the Next Move" */
-.before-list { list-style: none; max-width: 460px; margin: 1.75rem auto; }
-.before-list li { font-family: 'Playfair Display', serif; font-size: 1.05rem; color: var(--text-dark); padding: 0.55rem 0 0.55rem 1.4rem; border-left: 2px solid var(--gold); margin-bottom: 0.3rem; text-align: left; }
-
-@media (max-width: 768px) {
-  .panel { padding: 1.75rem 1.35rem; }
-}
-
-/* === RYTHME DES FONDS (28/07) ===
-   Le nouvel ordre des sections mettait deux blocs navy cote a cote (Why Act Now + The
-   Challenge, puis Signal Shift + Ways to Work): la frontiere disparaissait et laissait un
-   grand vide sombre. Sequence tenue desormais, aucune couleur repetee a la suite:
-   navy / creme / navy / blanc / or / creme / navy / blanc / creme. */
-
-/* The Challenge passe en clair (etait navy, colle a Why Act Now) */
-.problem { background: var(--cream); }
-.problem h2 { color: var(--text-dark); }
-.problem p { color: var(--text-body); }
-.problem-list li { color: var(--text-body); border-bottom: 1px solid var(--border); }
-
-/* Ways to Work Together passe en clair (etait navy, colle a Signal Shift) */
-.tiers-section { background: var(--cream); }
-.tiers-section::before { background: var(--border); }
-.tiers-section::after { display: none; }
-.tiers-section h2 { color: var(--text-dark); }
-.tier { background: var(--white); border: 1px solid var(--border); }
-.tier:hover { border-color: var(--gold); box-shadow: 0 10px 30px rgba(12,27,46,0.10); }
-.tier h3 { color: var(--text-dark); }
-
+<style>
+.barre__liens .barre__btn{background:var(--gold); color:var(--navy); border-radius:2px;
+  padding:.55rem 1rem; border-bottom:0; letter-spacing:.1em}
+.barre__liens .barre__btn:hover{background:var(--gold-soft); color:var(--navy);
+  border-bottom:0}
+.barre__liens .barre__btn[aria-current="page"]{color:var(--navy)}
 </style>
 </head>
 <body>
+<nav class="barre"><a class="barre__nom" href="/">Tom Scally <span>Signal Shift</span></a><div class="barre__liens"><a href="/about-tom.html">About Tom</a><a class="barre__btn" href="/get-a-decision-read.html">Get a Decision Read</a></div></nav>
 
-<!-- NAV -->
-<nav>
-  <a href="#" class="logo">Tom <span>Scally</span></a>
-  <div class="nav-right">
-    <a href="https://calendly.com/tscally/call" target="_blank" class="nav-cta">Get a Clear Read</a>
-  </div>
-</nav>
-
-<!-- MOBILE STICKY CTA -->
-<div class="sticky-cta">
-  <a href="https://calendly.com/tscally/call" target="_blank">Get a Clear Read</a>
-</div>
-
-<!-- 1. HERO -->
-<section class="hero">
-  <div class="container">
-    <div class="hero-text">
-      <h1>Tom Scally</h1>
-      <span class="section-tag" style="display:block; margin:0.6rem 0 1.4rem;">Signal Shift</span>
-      <p class="hero-goldsub">When commercial momentum slows, leadership often looks inside the company. Signal Shift starts by looking outside.</p>
-      <p class="hero-sub" style="margin-bottom:1.4rem;">I help leadership understand why the market is not responding as expected and what to do next before committing additional time, money, or credibility.</p>
-      <p class="hero-sub" style="margin-bottom:0.6rem;">Companies typically reach out when:</p>
-      <ul class="hero-list">
-        <li>Commercial momentum has slowed.</li>
-        <li>The sales pipeline has stalled.</li>
-        <li>Investor interest has slowed.</li>
-        <li>Partnerships are not converting.</li>
-        <li>Growth has plateaued.</li>
-        <li>Competitors appear to be pulling ahead.</li>
-        <li>The market is not responding the way leadership expected.</li>
-      </ul>
-      <p class="hero-sub">Signal Shift provides an independent external diagnosis of what has changed, what may be getting missed, and what deserves attention before additional time, money, and resources are committed.</p>
-      <div class="hero-btns">
-        <a href="https://calendly.com/tscally/call" target="_blank" class="btn-primary">
-          Get a Clear Read <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-        </a>
-      </div>
-      <p class="hero-sub" style="font-size:0.85rem; font-style:italic; color:rgba(255,255,255,0.4); margin-top:-1rem;">Understand why momentum has slowed, what deserves greater investment, what should change, and where hidden opportunities or commercial risks may exist before making your next move.</p>
-    </div>
-    <div class="hero-photo">
-      <div class="tom-portrait">
-        <img src="tom.png" alt="Tom Scally, Creator of Signal Shift">
+<!-- ============================ OUVERTURE ============================ -->
+<section class="bande bande--navy hero">
+  <div class="dedans">
+    <div class="hero__haut">
+    <div class="hero__mot">
+      <span class="etiq">Signal Shift</span>
+      <h1>Before the<span class="rupture">Next Move.</span></h1>
+      <p class="lead" style="margin-top:1.75rem">Independent, evidence-based review for
+        decisions with real capital, credibility, or momentum riding on them — before you
+        commit, and again after, to see if the market agreed.</p>
+      <div class="boutons">
+        <a class="cta cta--plein" href="/get-a-decision-read.html">Get a Decision Read →</a>
+        <a class="cta cta--nu" href="#exhibit">See a real finding ↓</a>
       </div>
     </div>
-  </div>
-</section>
-
-<!-- 2. BUILT FOR COMPANIES THAT ARE ACTIVE + 3. WHEN INTERNAL ANSWERS AREN'T ENOUGH -->
-<section class="audience">
-  <div class="container">
-    <h2 class="r" style="font-size:clamp(1.35rem,2.4vw,1.85rem); line-height:1.35; margin:0;">Built for Companies That Are Active but Not Gaining Traction</h2>
-    <div class="gold-rule r" style="margin:0.75rem 0 1.25rem;"></div>
-    <p class="r" style="max-width:820px;">I work with companies that are meeting investors, pursuing partnerships, investing in business development, and communicating with the market, but the activity is not producing the expected commercial response.</p>
-    <p class="r" style="max-width:820px;">The company may be doing many of the right things. The difficulty is determining which efforts are creating traction, which are producing activity without movement, and what leadership may be too close to the business to see.</p>
-
-    <div class="panel r">
-      <h3 style="font-family:'Playfair Display', serif; font-size:clamp(1.1rem,1.9vw,1.35rem); font-weight:700; color:var(--text-dark); line-height:1.35; margin:0;">When Internal Answers Aren't Enough</h3>
-      <div class="gold-rule" style="margin:0.75rem 0 1.25rem;"></div>
-      <p class="panel-lead">Signal Shift examines how the company's positioning, communications, competitive environment, and market activity are affecting commercial traction.</p>
-      <p style="margin-bottom:0.4rem;">It becomes especially relevant when:</p>
-      <ul>
-        <li>Commercial momentum has slowed despite continued investment.</li>
-        <li>Investor, partner, or business development conversations are stalling.</li>
-        <li>Announcements are generating visibility but little meaningful response.</li>
-        <li>Competitors appear to be gaining authority or changing the conversation.</li>
-        <li>Leadership is preparing to invest more but wants an independent external diagnosis before making the next move.</li>
-      </ul>
-      <p>The objective is not simply more visibility or more activity.</p>
-      <p>It is to understand what is helping commercial momentum, what may be holding it back, and what leadership should do next before committing additional time, money, or credibility.</p>
+    <div class="portrait">
+      <img src="tom.png" alt="Tom Scally, creator of Signal Shift" width="620" height="774">
+    </div>
+    </div>
+    <div class="trace">
+      <svg viewBox="0 0 1200 260" fill="none" aria-hidden="true" preserveAspectRatio="none">
+        <line x1="0" y1="176" x2="1200" y2="176" stroke="rgba(201,168,76,.18)" stroke-width="1"/>
+        <line x1="720" y1="26" x2="720" y2="240" stroke="rgba(201,168,76,.3)" stroke-width="1" stroke-dasharray="4 7"/>
+        <path d="M0 176 C 220 176, 430 172, 600 160 C 690 152, 706 96, 720 62"
+              stroke="#c9a84c" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M720 62 C 748 122, 820 178, 980 196 C 1080 206, 1150 208, 1200 209"
+              stroke="#4f7ca8" stroke-width="2.5" stroke-linecap="round"/>
+        <circle cx="720" cy="62" r="5" fill="#c9a84c"/>
+      </svg>
+      <div class="trace__leg"><span>Internal conviction</span><span>The decision gap</span></div>
     </div>
   </div>
 </section>
 
-<!-- 4. WHY ACT NOW -->
-<section class="stmt">
-  <div class="container">
-    <span class="section-tag r">Why Act Now</span>
-    <div class="gold-rule r" style="margin:0.75rem 0 1.25rem;"></div>
-    <p class="lead r">The market is already forming a view. Every announcement, investor conversation, and partnership discussion shapes how your company is understood.</p>
-    <p class="r">When positioning or perception is misaligned, doing more does not solve the problem. It can amplify it.</p>
-    <p class="r">The best time to step back is before the next move, before additional visibility, outreach, time, money, or credibility are committed.</p>
-  </div>
-</section>
-
-<!-- 5. THE CHALLENGE -->
-<section class="problem">
-  <div class="container">
-    <div class="r">
-      <span class="section-tag">The Challenge</span>
-      <div class="gold-rule" style="margin:0.75rem 0 1.25rem;"></div>
-      <h2 style="font-size:1.55rem; line-height:1.35;">Many companies are highly active in the market yet still fail to generate the response they expected.</h2>
-    </div>
-    <div class="r">
-      <ul class="problem-list">
-        <li>Announcements generate visibility but not credibility.</li>
-        <li>Partnership discussions stall.</li>
-        <li>Investor interest fades.</li>
-        <li>Business development creates activity but not traction.</li>
-      </ul>
-      <p style="margin-top:1.5rem;">These are often signs that the market is interpreting the company differently than leadership intended.</p>
-    </div>
-  </div>
-</section>
-
-<!-- 6. PRESSURE AROUND THE NEXT MOVE (primary CTA, gold) -->
-<section class="pressure-band" style="background:linear-gradient(135deg, #c9a84c 0%, #d8be73 100%); padding:3.5rem 0; position:relative;">
-  <div class="container" style="text-align:center; max-width:780px;">
-    <h2 class="serif r" style="color:var(--navy); font-size:clamp(1.5rem,2.6vw,2.1rem); font-weight:800; margin-bottom:0.85rem;">Pressure Around the Next Move?</h2>
-    <p class="r" style="color:rgba(12,27,46,0.82); margin-bottom:0.4rem; font-size:0.98rem;">Considering an IR firm, more visibility, or a stronger push on partnerships?</p>
-    <p class="r" style="color:rgba(12,27,46,0.82); margin-bottom:1.85rem; font-size:0.98rem;">Before moving forward, it may be worth getting an outside read on whether your story, credibility, and competitive position are ready to support that move, and what may need attention first.</p>
-    <a href="https://calendly.com/tscally/call" target="_blank" class="btn-dark r">Discuss a Signal Shift Snapshot <svg class="btn-arrow" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
-  </div>
-</section>
-
-<!-- LOGO STRIP, uncomment when Tom provides client/media logos
-<section class="logos">
-  <div class="container">
-    <div class="label">Previously At / Working With</div>
-    <div class="logo-grid">
-    </div>
-  </div>
-</section>
--->
-
-<!-- 7. EXPERIENCE BEHIND THE READ -->
-<section class="bg-section">
-  <div class="container">
-    <span class="section-tag r">Experience Behind the Read</span>
-    <div class="gold-rule r" style="margin:0.75rem 0 1.25rem;"></div>
-    <p class="r">Companies rarely fail because they stop working. More often, they continue investing time, money, and credibility in activities that are not creating the commercial outcomes they expected.</p>
-    <p class="r">Throughout my career in strategic partnerships, business development, market positioning, and commercial growth, I have seen that companies rarely struggle because they lack effort. More often, they are too close to the business to recognize how the market is interpreting their story, and where opportunity is being lost as a result.</p>
-    <p class="r lead-stmt" style="margin:1.6rem 0;">That's where I come in.</p>
-    <p class="r">My role is to provide an independent perspective that helps leadership step back, see the market more clearly, and make better-informed commercial decisions before the next important move.</p>
-  </div>
-</section>
-
-<!-- 8. SIGNAL SHIFT (methodology) -->
-<section class="signal">
-  <div class="container" style="display:block; max-width:780px; margin:0 auto;">
-    <div class="r">
-      <span class="section-tag">Signal Shift</span>
-      <div class="gold-rule" style="margin:0.75rem 0 1rem;"></div>
-      <p style="margin-bottom:0.5rem;">The Snapshot is designed to answer one question:</p>
-      <h2 style="margin-top:0;">"Before we make our next commercial move, what is the market already telling us?"</h2>
-      <p>Signal Shift measures how the market is responding to a company's announcements, messaging, visibility, and investor-facing activity, to determine whether they are building credibility and commercial momentum, or simply creating attention.</p>
-      <p>The analysis looks beyond headline reach to evaluate:</p>
-      <ul style="margin:0.6rem 0 1.25rem; padding-left:1.3rem; list-style:disc; color:var(--gold);">
-        <li style="margin-bottom:0.4rem;">Competitive share of voice</li>
-        <li style="margin-bottom:0.4rem;">Original coverage versus syndication</li>
-        <li style="margin-bottom:0.4rem;">Authority and quality of visibility</li>
-        <li style="margin-bottom:0.4rem;">Message clarity and narrative ownership</li>
-        <li style="margin-bottom:0.4rem;">Competitor positioning</li>
-        <li style="margin-bottom:0.4rem;">Partnership and business development opportunities</li>
-      </ul>
-      <p>The objective is to distinguish between activity and meaningful market impact.</p>
-      <p>A company may appear highly visible while a competitor with fewer mentions is building greater authority, controlling the narrative, and creating stronger commercial momentum.</p>
-      <p>The result is a clearer understanding of where the company stands today and what deserves attention before making the next commercial move.</p>
-      <div style="display:flex; gap:0.75rem; flex-wrap:wrap; margin-top:1.25rem;">
-        <a href="signal-shift-bitcoin-ocean.pdf" class="btn-outline" target="_blank">
-          View a Sample Snapshot <svg class="btn-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-        </a>
+<!-- ============================ LA PREMISSE ============================ -->
+<section class="bande bande--creme">
+  <div class="dedans">
+    <span class="etiq">The premise</span>
+    <h2>Companies decide internally.<br>The outcome happens externally.</h2>
+    <div class="duo">
+      <div class="carte">
+        <h3>What leadership knows</h3>
+        <p>Experience, financial models, customer knowledge, internal data. Real, and often
+          deep — built from years inside the business.</p>
+      </div>
+      <div class="carte">
+        <h3>What the market decides</h3>
+        <p>Customers, investors, partners, and competitors have no obligation to see it the
+          same way. They form their own view, separately.</p>
       </div>
     </div>
+    <p class="souligne">Signal Shift tests whether current external evidence supports
+      internal confidence — before significant resources are committed, and again after, to
+      see whether the market responded as expected.</p>
   </div>
 </section>
 
-<!-- ENGAGEMENT TIERS -->
-<section class="tiers-section">
-  <div class="container">
-    <p class="r" style="text-align:center; font-style:italic; color:var(--text-muted); font-size:1.05rem; margin-bottom:1.4rem;">Some teams need clarity. Others need direction. Others need execution.</p>
-    <span class="section-tag" style="text-align:center;display:block;">Ways to Work Together</span>
-    <h2 style="margin-bottom:0.6rem;">A practical progression, from understanding what is happening in the market to deciding what to do next and, when appropriate, helping execute the strategy.</h2>
-    <div class="tiers" style="margin-top:2.5rem;">
-      <div class="tier r">
-        <div class="t-tag">Diagnostic Engagement</div>
-        <h3>Signal Shift Snapshot</h3>
-        <p style="font-size:0.82rem;letter-spacing:0.04em;color:var(--text-muted);margin:0.1rem 0 0.55rem;">Visibility &amp; ROI Intelligence &nbsp;&middot;&nbsp; 30 Days</p>
-        <p style="font-size:0.66rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:1.2rem 0 0.4rem;">Objective</p>
-        <p style="font-size:0.95rem;color:var(--text-body);line-height:1.65;margin:0;">Determine whether recent announcements, communications, visibility, and investor-facing activity are building credibility and commercial momentum, or simply generating attention.</p>
-        <p style="font-size:0.66rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:1.2rem 0 0.4rem;">Deliver</p>
-        <ul style="list-style:none;margin:0;padding:0;">
-          <li style="font-size:0.92rem;color:var(--text-body);line-height:1.55;padding-left:0.95rem;position:relative;margin-bottom:0.4rem;"><span style="position:absolute;left:0;color:var(--gold);">&middot;</span>Visibility &amp; ROI Intelligence Report</li>
-          <li style="font-size:0.92rem;color:var(--text-body);line-height:1.55;padding-left:0.95rem;position:relative;margin-bottom:0.4rem;"><span style="position:absolute;left:0;color:var(--gold);">&middot;</span>Competitive Benchmark</li>
-          <li style="font-size:0.92rem;color:var(--text-body);line-height:1.55;padding-left:0.95rem;position:relative;margin-bottom:0.4rem;"><span style="position:absolute;left:0;color:var(--gold);">&middot;</span>Growth Opportunity Map</li>
-          <li style="font-size:0.92rem;color:var(--text-body);line-height:1.55;padding-left:0.95rem;position:relative;margin-bottom:0.4rem;"><span style="position:absolute;left:0;color:var(--gold);">&middot;</span>Executive Review &amp; Recommendations</li>
+<!-- ============================ AVANT / APRES ============================ -->
+<section class="bande bande--sable">
+  <div class="dedans">
+    <div class="duo">
+      <div class="volet">
+        <span class="etiq">Before</span>
+        <h3>Should we make this move?</h3>
+        <p>Not a prediction. A structured, evidence-based read on how well the decision is
+          currently supported.</p>
+        <div class="voies">
+          <span class="voies__titre">Three decision lanes</span>
+          <div class="voies__grille">
+            <div><h4>Market &amp; Launch</h4>
+              <p>Brand / communications push<br>Product or feature launch</p></div>
+            <div><h4>Capital &amp; Investor</h4>
+              <p>Fundraise or investor narrative</p></div>
+            <div><h4>Partnerships &amp; Growth</h4>
+              <p>Major partnership or commercial initiative</p></div>
+          </div>
+        </div>
+        <span class="voies__titre">What the Decision Read tests</span>
+        <ul class="liste">
+          <li>Competitive positioning &amp; timing</li>
+          <li>Market conditions &amp; audience priorities</li>
+          <li>Whether the differentiation claim is already taken</li>
+          <li>What's economically exposed if a key assumption is wrong</li>
         </ul>
-        <p style="font-size:0.66rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:1.2rem 0 0.4rem;">Outcome</p>
-        <p style="font-size:0.95rem;color:var(--text-body);line-height:1.65;margin:0;">A clear understanding of what is working, what is not, where competitors are gaining ground, and what deserves attention before the next commercial move.</p>
+        <div class="verdict verdict--nu">
+          <ul>
+            <li>Proceed</li>
+            <li>Adjust</li>
+            <li>Reconsider</li>
+          </ul>
+        </div>
       </div>
-      <div class="tier r">
-        <div class="t-tag">Growth &amp; BD Alignment</div>
-        <h3>Strategic Advisory</h3>
-        <p style="font-size:0.82rem;letter-spacing:0.04em;color:var(--text-muted);margin:0.1rem 0 0.55rem;">60-90 Days</p>
-        <p style="font-size:0.66rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:1.2rem 0 0.4rem;">Objective</p>
-        <p style="font-size:0.95rem;color:var(--text-body);line-height:1.65;margin:0;">Turn the findings into a focused commercial growth strategy.</p>
-        <p style="font-size:0.66rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:1.2rem 0 0.4rem;">Deliver</p>
-        <ul style="list-style:none;margin:0;padding:0;">
-          <li style="font-size:0.92rem;color:var(--text-body);line-height:1.55;padding-left:0.95rem;position:relative;margin-bottom:0.4rem;"><span style="position:absolute;left:0;color:var(--gold);">&middot;</span>Biweekly Market &amp; Narrative Intelligence Updates</li>
-          <li style="font-size:0.92rem;color:var(--text-body);line-height:1.55;padding-left:0.95rem;position:relative;margin-bottom:0.4rem;"><span style="position:absolute;left:0;color:var(--gold);">&middot;</span>Growth &amp; BD Alignment Plan</li>
-          <li style="font-size:0.92rem;color:var(--text-body);line-height:1.55;padding-left:0.95rem;position:relative;margin-bottom:0.4rem;"><span style="position:absolute;left:0;color:var(--gold);">&middot;</span>Partner &amp; Ecosystem Opportunity Map</li>
-          <li style="font-size:0.92rem;color:var(--text-body);line-height:1.55;padding-left:0.95rem;position:relative;margin-bottom:0.4rem;"><span style="position:absolute;left:0;color:var(--gold);">&middot;</span>Priority Outreach Strategy</li>
+      <div class="volet">
+        <span class="etiq">After</span>
+        <h3>Did the market respond as expected?</h3>
+        <p>Once the move is made, the same method examines what actually happened —
+          separating real reach from real authority.</p>
+        <ul class="liste">
+          <li>Earned coverage vs. paid syndication</li>
+          <li>Share of voice against named competitors</li>
+          <li>Whether visibility is compounding, or already decaying</li>
+          <li>What changed — and what should inform the next move</li>
         </ul>
-        <p style="font-size:0.66rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:1.2rem 0 0.4rem;">Outcome</p>
-        <p style="font-size:0.95rem;color:var(--text-body);line-height:1.65;margin:0;">Leadership has a clear direction for positioning, partnerships, investor engagement, and business development based on market intelligence rather than assumptions.</p>
       </div>
-      <div class="tier r">
-        <div class="t-tag">Business Development Execution</div>
-        <h3>Embedded Growth &amp; BD Support</h3>
-        <p style="font-size:0.82rem;letter-spacing:0.04em;color:var(--text-muted);margin:0.1rem 0 0.55rem;">3-6 Months</p>
-        <p style="font-size:0.66rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:1.2rem 0 0.4rem;">Objective</p>
-        <p style="font-size:0.95rem;color:var(--text-body);line-height:1.65;margin:0;">Help execute the strategy through focused relationship development and commercial outreach.</p>
-        <p style="font-size:0.66rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:1.2rem 0 0.4rem;">Deliver</p>
-        <ul style="list-style:none;margin:0;padding:0;">
-          <li style="font-size:0.92rem;color:var(--text-body);line-height:1.55;padding-left:0.95rem;position:relative;margin-bottom:0.4rem;"><span style="position:absolute;left:0;color:var(--gold);">&middot;</span>Strategic partner, investor, and ecosystem outreach</li>
-          <li style="font-size:0.92rem;color:var(--text-body);line-height:1.55;padding-left:0.95rem;position:relative;margin-bottom:0.4rem;"><span style="position:absolute;left:0;color:var(--gold);">&middot;</span>Relationship management and follow-up</li>
-          <li style="font-size:0.92rem;color:var(--text-body);line-height:1.55;padding-left:0.95rem;position:relative;margin-bottom:0.4rem;"><span style="position:absolute;left:0;color:var(--gold);">&middot;</span>Pipeline development and opportunity tracking</li>
-          <li style="font-size:0.92rem;color:var(--text-body);line-height:1.55;padding-left:0.95rem;position:relative;margin-bottom:0.4rem;"><span style="position:absolute;left:0;color:var(--gold);">&middot;</span>Visibility coordination with key industry and media contacts</li>
-          <li style="font-size:0.92rem;color:var(--text-body);line-height:1.55;padding-left:0.95rem;position:relative;margin-bottom:0.4rem;"><span style="position:absolute;left:0;color:var(--gold);">&middot;</span>Ongoing commercial review and strategic guidance</li>
-        </ul>
-        <p style="font-size:0.66rem;letter-spacing:0.13em;text-transform:uppercase;color:var(--gold);font-weight:700;margin:1.2rem 0 0.4rem;">Outcome</p>
-        <p style="font-size:0.95rem;color:var(--text-body);line-height:1.65;margin:0;">A measurable pipeline of qualified opportunities, stronger market relationships, and sustained commercial momentum.</p>
+    </div>
+    <p class="note prose" style="margin-top:2.75rem">We won't hand you a precise
+      probability we can't defend, or a score dressed up as more scientific than it is. If
+      we can't show our reasoning, we don't give you the number.</p>
+  </div>
+</section>
+
+<!-- ============================ LE CAS ============================ -->
+<section class="bande bande--navy" id="exhibit">
+  <div class="dedans">
+    <span class="etiq">Exhibit A — Bitcoin Ocean</span>
+    <h2>Winning visibility.<br>Racing to lock authority.</h2>
+    <p class="lead prose" style="margin-top:1.75rem"><strong>The decision error:</strong> a
+      company appeared to be winning — dominant reach, a dominant news cycle. Fourteen days
+      later, a direct competitor was about to change the market's standard of proof entirely.
+      Signal Shift identified that gap before it hardened into the new default comparison.</p>
+
+    <div class="stats">
+      <div class="stat"><b>65M+</b><span>Potential impressions — 6x the nearest competitor</span></div>
+      <div class="stat"><b>86%</b><span>Of that reach was syndication, not earned authority</span></div>
+      <div class="stat"><b>14 days</b><span>Before a competitor raised the bar the market would judge by</span></div>
+    </div>
+
+    <div class="trouve prose">
+      <p><b>The finding:</b> visibility and authority aren't the same thing, and they don't
+        arrive on the same timeline. Bitcoin Ocean won the awareness race. The read specified
+        exactly what would need to happen next to win the trust race too — before the window
+        closed.</p>
+    </div>
+    <p class="note prose" style="margin-top:1.5rem; font-style:italic">This exhibit reflects
+      Signal Shift's independent post-announcement read. It does not include a pre-decision
+      engagement.</p>
+    <div class="contre">
+      <p><strong>A separate launch we reviewed</strong> generated 376 paid postings and an
+        estimated 821M in potential reach — and zero independent editorial coverage. It
+        didn't rank on page one for any term a real buyer would search. Same gap, different
+        company: activity without impact.</p>
+      <p style="margin-top:1.15rem"><b>This is the part that doesn't wait for you to
+        notice:</b> competitive windows close on their own schedule, not yours. Whatever
+        you're about to announce is being measured against whatever your closest competitor
+        does next. The question isn't just whether your move is good — it's whether it's
+        still good by the time the market finishes reacting to it.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ LA DECISION HUMAINE ============================ -->
+<section class="bande bande--sable">
+  <div class="dedans">
+    <span class="etiq">The human decision layer</span>
+    <div class="duo duo--cit">
+      <blockquote>“The system provides the evidence. Experience provides the judgment.
+        Leadership makes the decision.”</blockquote>
+      <div>
+        <p>AI has made information and analysis widely available — that isn't the problem
+          Signal Shift solves. The harder question is what the evidence means for this
+          decision, at this company, right now.</p>
+        <p>AI will mostly evaluate the assumptions you give it. Signal Shift independently
+          tests those assumptions against what's actually happening outside your company,
+          and shows you where the two disagree — with someone accountable for the read, not
+          a model with nothing at stake if it's wrong.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- 10. BEFORE THE NEXT MOVE + CTA -->
-<section class="final">
-  <div class="container">
-    <div class="gold-rule r" style="margin:0 auto 1.25rem;"></div>
-    <h2 class="r">Before the Next Move</h2>
-    <p class="r">Every important commercial decision changes the conditions for the one that follows.</p>
-    <ul class="before-list r">
-      <li>Before investing more in visibility</li>
-      <li>Before increasing investor outreach</li>
-      <li>Before hiring another advisor</li>
-      <li>Before expanding business development</li>
-    </ul>
-    <p class="r">Take a moment to understand what the market is already telling you. The cost of the wrong next move is almost always higher than the cost of taking time to evaluate it first.</p>
-    <div class="final-btns r">
-      <a href="https://calendly.com/tscally/call" target="_blank" class="btn-dark">
-        Discuss a Signal Shift Snapshot <svg class="btn-arrow" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
-      </a>
+<!-- ============================ L'INVESTISSEMENT ============================ -->
+<section class="bande bande--creme">
+  <div class="dedans">
+    <span class="etiq">Investment</span>
+    <h2>Priced for the decision, not the report.</h2>
+    <div class="prix">
+      <div class="offre offre--phare">
+        <h3>Decision Snapshot</h3>
+        <span class="montant">Starting at $1,000</span>
+        <p>A focused read on one specific decision — what's supported, what's exposed, and a
+          Proceed / Adjust / Reconsider recommendation.</p>
+      </div>
+      <div class="offre">
+        <h3>Snapshot + Advisory Session</h3>
+        <span class="montant">Scoped</span>
+        <span class="apres">after intake</span>
+        <p>Everything in the Snapshot, plus a working session with Tom to apply the read to
+          your specific situation and choose the next move.</p>
+      </div>
+      <div class="offre">
+        <h3>Before + After</h3>
+        <span class="montant">Scoped</span>
+        <span class="apres">after intake</span>
+        <p>For the decisions where getting it right matters most — the full pre-decision
+          read, plus a post-decision comparison against the original thesis.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <div class="f-name">Tom Scally</div>
-    <div class="f-links">
-      <a href="https://calendly.com/tscally/call" target="_blank">Get a Clear Read</a>
+<!-- ============================ CLOTURE ============================ -->
+<section class="bande bande--navy final">
+  <div class="dedans">
+    <h2>Before your next move</h2>
+    <p class="lead prose">Competitive windows close on their own schedule, not yours. You
+      may not need more activity, and you may not need another strategy. You may need to know
+      whether the evidence supports the move you're about to make — before the market decides
+      for you.</p>
+    <div class="boutons">
+      <a class="cta cta--plein" href="/get-a-decision-read.html">Get a Decision Read →</a>
     </div>
   </div>
-</footer>
+</section>
 
-<script>
-const obs = new IntersectionObserver(e => e.forEach(el => { if(el.isIntersecting) el.target.classList.add('v'); }), {threshold:0.12, rootMargin:'0px 0px -30px 0px'});
-document.querySelectorAll('.r').forEach(el => obs.observe(el));
-const n = document.querySelector('nav');
-window.addEventListener('scroll', () => n.classList.toggle('scrolled', scrollY > 50), {passive:true});
-</script>
+<p class="pied"><span>Outside evidence. Commercial judgment. Better decisions. — <b style="white-space:nowrap">Tom Scally</b></span></p>
+
 </body>
 </html>
